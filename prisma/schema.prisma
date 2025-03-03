@@ -12,3 +12,93 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id             String @id @default(uuid())
+  name           String
+  email          String @unique
+  password       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  input          Input[]
+  results        Result[]
+  history        History[]
+  feedback       Feedback[]
+  sessions       Session[]
+}
+
+model Input {
+  id             String @id @default(uuid())
+  age            Int
+  height         Float
+  weight         Float
+  bmi            Float
+  diet           String
+  workout        String
+  smoking        Boolean
+  alcohol        Boolean
+  sleepTime      Float
+  stress         Int
+  location       String
+  roastLevel     String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  userId         String
+  user           User @relation(fields: [userId], references: [id])
+  result         Result?
+  history        History?
+  feedback       Feedback?
+}
+
+model Result {
+  id             String @id @default(uuid())
+  lifeExpectancy Int
+  roastComment   String
+  diseaseRisk    String
+  recommendation String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  userId         String
+  user           User @relation(fields: [userId], references: [id])
+  inputId        String @unique
+  input          Input @relation(fields: [inputId], references: [id])
+}
+
+model History {
+  id             String @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  userId         String
+  user           User @relation(fields: [userId], references: [id])
+  inputId        String @unique
+  input          Input @relation(fields: [inputId], references: [id])
+}
+
+model Feedback {
+  id             String @id @default(uuid())
+  rating         Int
+  tersadarkan    Int
+  comment        String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  userId         String
+  user           User @relation(fields: [userId], references: [id])
+  inputId        String @unique
+  input          Input @relation(fields: [inputId], references: [id])
+}
+
+model Session {
+  id             String @id @default(cuid())
+  sessionToken   String @unique
+  expires        DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  userId         String
+  user           User @relation(fields: [userId], references: [id])
+}
