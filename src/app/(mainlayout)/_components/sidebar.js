@@ -1,4 +1,5 @@
 import { prisma } from "@/utils/prisma";
+import Link from "next/link";
 
 export const Sidebar = async ({ userId }) => {
     const results = (await prisma.result.findMany()).filter(
@@ -10,7 +11,9 @@ export const Sidebar = async ({ userId }) => {
                 <div className="border-1 border-red-700">History</div>
                 <div className="space-y-2">
                     {results.map((result) => (
-                        <div key={result.id}>{result.createdAt.toString()}</div>
+                        <Link href={`/result/${result.id}`} key={result.id}>
+                            {result.createdAt.toString()}
+                        </Link>
                     ))}
                 </div>
             </div>
