@@ -97,19 +97,18 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-white italic">
-                    "Oh wow, look at you, a true pioneer of modern laziness!
-                    Your diet is basically a science experiment gone wrong, and
-                    your workout routine? Yeah, blinking doesn’t count as
-                    cardio. With sleep patterns that scream ‘I have no idea what
-                    circadian rhythm means,’ your body is basically running on
-                    spite and caffeine at this point. But hey, who needs
-                    longevity when you can have instant gratification and
-                    chronic fatigue? Keep going like this, and your body might
-                    just file for early retirement. But if—just if—you don’t
-                    want your heart giving up on you like an old iPhone battery,
-                    maybe try something radical, like drinking actual water or
-                    walking further than the distance from your couch to the
-                    fridge. Just a thought."
+                    Oh wow, look at you, a true pioneer of modern laziness! Your
+                    diet is basically a science experiment gone wrong, and your
+                    workout routine? Yeah, blinking doesnt count as cardio. With
+                    sleep patterns that scream I have no idea what circadian
+                    rhythm means, your body is basically running on spite and
+                    caffeine at this point. But hey, who needs longevity when
+                    you can have instant gratification and chronic fatigue? Keep
+                    going like this, and your body might just file for early
+                    retirement. But if—just if—you dont want your heart giving
+                    up on you like an old iPhone battery, maybe try something
+                    radical, like drinking actual water or walking further than
+                    the distance from your couch to the fridge. Just a thought.
                   </p>
                 </div>
                 <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-900/20 to-gray-400/20">
@@ -120,14 +119,14 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-white italic">
-                    "Hey, no judgment, but your body might appreciate a little
-                    more love. Right now, it's running on low fuel, bad sleep,
+                    Hey, no judgment, but your body might appreciate a little
+                    more love. Right now, its running on low fuel, bad sleep,
                     and some questionable food choices, which might not be the
                     best long-term strategy. The good news? Small tweaks—like
                     drinking more water, getting a little movement in, and not
                     treating sleep like an optional side quest—can make a huge
                     difference. No need to overhaul everything overnight, just
-                    start somewhere! Your future self will be very grateful."
+                    start somewhere! Your future self will be very grateful.
                   </p>
                 </div>
               </div>
