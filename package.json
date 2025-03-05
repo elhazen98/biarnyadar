@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroui/react": "^2.7.4",
     "@prisma/client": "^6.4.1",
+<<<<<<< HEAD
     "@radix-ui/react-slider": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
@@ -23,6 +24,17 @@
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
+=======
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "framer-motion": "^12.4.7",
+    "next": "15.2.0",
+    "next-auth": "^4.24.11",
+    "pg": "^8.13.3",
+    "prisma": "^6.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+>>>>>>> bf24c9b (fix register page)
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
