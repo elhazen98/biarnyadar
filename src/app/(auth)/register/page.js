@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import { registerAction } from "./action";
+import { OauthButton } from "../_components/oauth";
 
 export default function RegisterPage() {
   const [state, formAction, pending] = useActionState(registerAction, {});
@@ -43,6 +44,7 @@ export default function RegisterPage() {
           >
             Register
           </button>
+          <OauthButton />
         </form>
         {state?.status === "error" && (
           <div className="text-center text-rose-600 bg-rose-50 p-2 rounded-lg mt-3">

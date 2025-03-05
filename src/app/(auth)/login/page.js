@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { loginAction } from "./action";
+import { OauthButton } from "../_components/oauth";
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(loginAction, {});
@@ -20,7 +21,7 @@ export default function LoginPage() {
         >
           <input
             name="email"
-            placeholder="Username / Email"
+            placeholder="Email"
             className=" border border-gray-500 rounded-full px-4 py-3 w-full"
             autoComplete="email"
           />
@@ -33,11 +34,11 @@ export default function LoginPage() {
           />
           <button
             type="submit"
-            isLoading={pending}
             className=" w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded-md"
           >
             Login
           </button>
+          <OauthButton />
         </form>
         {state?.status === "error" && (
           <div className="text-center text-rose-600 bg-rose-50 p-2 rounded-lg mt-3">

@@ -1,11 +1,7 @@
-import { Button } from "@heroui/react";
-
 export const OauthButton = () => {
   return (
-    <form>
-      <Button fullWidth variant="bordered" radius="sm">
-        Continue with Google
-      </Button>
-    </form>
+    <button className="rounded-sm w-full text-amber-300">
+      Continue with Google
+    </button>
   );
 };

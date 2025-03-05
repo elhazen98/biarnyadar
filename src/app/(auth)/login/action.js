@@ -2,7 +2,6 @@
 
 import { prisma } from "@/utils/prisma";
 import bcrypt from "bcrypt";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 export async function loginAction(_, formData) {
