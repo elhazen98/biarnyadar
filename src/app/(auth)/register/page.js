@@ -2,9 +2,8 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
-import Input from "../_components/oauth";
-import Button from "../_components/oauth";
-import { registerAction } from "../_components/oauth";
+import { registerAction } from "./action";
+import { Button, Input } from "@heroui/react";
 
 export default function RegisterPage() {
   const [state, formAction, pending] = useActionState(registerAction, {});
