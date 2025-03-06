@@ -17,7 +17,6 @@ export async function loginAction(_, formData) {
       };
     }
 
-    // Cek apakah user ada di database
     const user = await prisma.user.findUnique({
       where: { email },
     });
@@ -29,7 +28,6 @@ export async function loginAction(_, formData) {
       };
     }
 
-    // Cek password yang di-hash
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
@@ -39,21 +37,18 @@ export async function loginAction(_, formData) {
       };
     }
 
-    // Buat session baru
     const newSession = await prisma.session.create({
       data: {
         userId: user.id,
       },
     });
 
-    // Simpan session di cookies
     cookiesStore.set("sessionId", newSession.id, {
       httpOnly: true,
       sameSite: "strict",
       secure: process.env.NODE_ENV === "production",
     });
 
-    // Beri response sukses sebelum redirect
     return {
       status: "success",
       message: "Login successful!",

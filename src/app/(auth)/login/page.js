@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [state, formAction, pending] = useActionState(loginAction, {});
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-yellow-400">
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-gray-900 to-gray-500">
       <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-md">
         <h2 className="text-5xl text-black font-bold text-center">Welcome</h2>
         <p className="text-sm text-gray-800 text-center mb-10">
@@ -34,7 +34,7 @@ export default function LoginPage() {
           />
           <button
             type="submit"
-            className=" w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded-md"
+            className=" w-full bg-gray-500 hover:bg-gray-800 text-white font-semibold py-3 rounded-md"
           >
             Login
           </button>

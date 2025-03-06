@@ -9,7 +9,7 @@ export default function RegisterPage() {
   const [state, formAction, pending] = useActionState(registerAction, {});
 
   return (
-    <main className="text-black flex min-h-screen items-center justify-center bg-gray-100">
+    <main className="text-black flex min-h-screen items-center justify-center bg-gradient-to-b from-gray-900 to-gray-500">
       <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center">Create Account</h2>
         <p className="text-sm text-gray-500 text-center mb-6">
@@ -40,7 +40,7 @@ export default function RegisterPage() {
           />
           <button
             type="submit"
-            className=" w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 rounded-md"
+            className=" w-full bg-gray-500 hover:bg-gray-800 text-white font-semibold py-3 rounded-md"
           >
             Register
           </button>
