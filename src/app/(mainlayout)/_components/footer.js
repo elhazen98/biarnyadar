@@ -1,7 +1,7 @@
 export const Footer = () => {
     return (
-        <footer className="w-full p-4 flex justify-center border-1 border-red-700">
-            footer
+        <footer className="w-full p-4 flex justify-center text-white/30 text-sm">
+            © 2025 Chronix | All rights reserved.
         </footer>
     );
 };
