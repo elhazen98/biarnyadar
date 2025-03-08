@@ -55,6 +55,7 @@ model Input {
 model Result {
   id             String @id @default(uuid())
   lifeExpectancy Int
+  title String?
   roastComment   String
   diseaseRisk    String
   recommendation String
