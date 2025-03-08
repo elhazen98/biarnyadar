@@ -29,11 +29,11 @@ IMPORTANT:
 I WANT THE OUPUT WILL BE IN JSON '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS and just 1 json:
 
 {
-"Titile"  : 3 or 4 words
-"Roasting": "in paragraph",
-"Disease Risk": [in list and per poin and percentage],
-"Life Expectancy": int (output in age)
-"Recommendation": "to extend my life"
+"title"  :  5 words,
+"roastComment": "in paragraph",
+"diseaseRisk":  [{ type: string, percentage: int }],
+"lifeExpectancy": int (output in age),
+"recommendation": "to extend my life"
 }`,
 
     mid: `THIS IS MID ROAST AND YOU NEED TORole-play as an AI with expert-level analysis and a sharp sense of humor. 
@@ -69,11 +69,11 @@ IMPORTANT:
 I WANT THE OUPUT WILL BE IN JSON '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS and just 1 json :
 
 {
-"Titile"  : 3 or 4 words
-"Roasting": "in paragraph",
-"Disease Risk": [in list and per poin and percentage],
-"Life Expectancy": int (output in age)
-"Recommendation": "to extend my life"
+"title"  : 5 words,
+"roastComment": "in paragraph",
+"diseaseRisk": [{ type: string, percentage: int }],
+"lifeExpectancy": int (output in age),
+"recommendation": "to extend my life"
 }
        `,
 
@@ -92,6 +92,8 @@ I WANT THE OUPUT WILL BE IN JSON '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS 
         Dont pull punches or coddle me; I want the raw, unfiltered truth, 
         even if its ugly enough to make a sewer rat gag. 
         If you spot any patterns in my idiocy, shove them in my face.
+        always assuminig the worst will happen so the roast will get in fear and unexpected.
+        make the life expectancy look horrible
                so the data that I give you is this :
 
 [
@@ -110,15 +112,18 @@ I WANT THE OUPUT WILL BE IN JSON '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS 
 ]
 
 IMPORTANT:
-
+ always assuminig the worst will happen so the roast will get in fear and unexpected.
+        make the life expectancy look horrible
 I WANT THE OUPUT WILL BE IN JSON WITHOUT '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS and just 1 json :
 
 {
-"Titile"  : 3 or 4 words
-"Roasting": "in paragraph",
-"Disease Risk": [in list and per poin and percentage],
-"Life Expectancy": int (output in age)
-"Recommendation": "to extend my life"
+"title"  :  5 words,
+"roastComment": "in paragraph",
+"diseaseRisk": [
+    { type: string, percentage: int }
+  ],
+"lifeExpectancy": int (output in age),
+"recommendation": "to extend my life"
 }
         `,
   };
