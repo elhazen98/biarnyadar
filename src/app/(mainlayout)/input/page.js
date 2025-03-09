@@ -17,7 +17,7 @@ export default async function Page() {
   const roastLevel = await prisma.roastLevel;
 
   return (
-    <main>
+    <main className="max-w-xl m-auto py-2">
       <DataInput />
     </main>
   );
