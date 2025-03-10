@@ -10,7 +10,7 @@ export const DataInput = () => {
   return (
     <section>
       <h1>Data Input</h1>
-      <form className="space-y-2" action={formAction}>
+      <form className="space-y-2 col-span-2" action={formAction}>
         <h3>Nama</h3>
         <input
           name="name"
@@ -35,9 +35,35 @@ export const DataInput = () => {
           placeholder="Input Berat dalam KG"
           className="border border-gray-500 rounded-full px-4 py-3 w-full"
         />
+        <input name="bmi" />
+        <h3>Pilih tipe Diet anda?</h3>
+        <select>
+          <option name="JunkFood">Junk Food</option>
+          <option name="MinumAir">Minum Air 8 Gelas sehari?</option>
+        </select>
+        <h3>Workout</h3>
+        <select>
+          <option name="JunkFood">Junk Food</option>
+          <option name="MinumAir">Minum Air 8 Gelas sehari?</option>
+        </select>
+        <h3>Smoking</h3>
+        <select>
+          <option name="JunkFood">Junk Food</option>
+          <option name="MinumAir">Minum Air 8 Gelas sehari?</option>
+        </select>
+        <h3>Alcohol</h3>
+        <select>
+          <option name="JunkFood">Junk Food</option>
+          <option name="MinumAir">Minum Air 8 Gelas sehari?</option>
+        </select>
+        <h3>Sleeptime</h3>
+        <select>
+          <option name="JunkFood">Junk Food</option>
+          <option name="MinumAir">Minum Air 8 Gelas sehari?</option>
+        </select>
         <button
           disabled={pending}
-          className="bg-indigo-700 text-white text-center align-middle"
+          className="bg-indigo-700 text-white text-center align-middle rounded-2xl"
         >
           Confirm Input
         </button>
