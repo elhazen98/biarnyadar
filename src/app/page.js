@@ -238,7 +238,7 @@ export default function Home() {
                             </CardContent>
                         </Card>
                     </section>
-                    <section id="disclaimer" className="pt-24 md:py-16">
+                    <section id="disclaimer" className="pt-24">
                         <h2 className="text-3xl font-bold text-center mb-8">
                             Disclaimer
                         </h2>
@@ -278,7 +278,7 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-                    <section id="privacy-policy" className="pt-24 md:py-16">
+                    <section id="privacy-policy" className="pt-24">
                         <h2 className="text-3xl text-center font-bold mb-8">
                             Privacy Policy
                         </h2>
