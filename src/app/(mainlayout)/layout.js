@@ -1,15 +1,12 @@
 import { Footer } from "./_components/footer";
 import { Header } from "./_components/header";
 import { Sidebar } from "./_components/sidebar";
-import { Montserrat } from "next/font/google";
-
-const montserrat = Montserrat({ subsets: ["latin"] });
 
 export default async function Layout({ children }) {
     return (
         <div
             name="mainbackground"
-            className={`h-screen flex flex-col justify-between ${montserrat.className} bg-gradient-to-br from-slate-950 to-gray-800 text-white `}
+            className="h-screen flex flex-col justify-between bg-gradient-to-br from-slate-950 to-gray-800 text-white"
         >
             <Header name={"testname"} email={"test@mail.com"} />
             <div className="flex h-full">

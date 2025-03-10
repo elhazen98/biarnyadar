@@ -2,9 +2,9 @@ import { prisma } from "@/utils/prisma";
 import Link from "next/link";
 
 export const Sidebar = async ({ userId }) => {
-    const results = (await prisma.result.findMany()).filter(
-        (result) => result.userId === userId
-    );
+    const results = await prisma.result.findMany({
+        where: { userId },
+    });
     return (
         <div className="max-w-md w-1/6 pl-4 pr-4">
             <div className="h-full border border-slate-700/50 rounded-xl from-gray-800/20 to-gray-700/20 backdrop-blur-md shadow-lg bg-gradient-to-b">
