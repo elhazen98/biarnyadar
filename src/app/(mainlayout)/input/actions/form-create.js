@@ -1,10 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Prisma } from "@prisma/client";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/utils/prisma";
 
-const prisma = new PrismaClient();
+//const prisma = new PrismaClient();
 
 export async function dataInput(_, formData) {
   //simulate delay
@@ -27,9 +26,8 @@ export async function dataInput(_, formData) {
     return { status: "error", message: "All fields are required" };
   }
 
-  await prisma.todo.create({
+  await prisma.input.create({
     data: {
-      name,
       age,
       height,
       weight,
