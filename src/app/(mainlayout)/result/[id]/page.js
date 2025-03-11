@@ -7,204 +7,221 @@ import RatingStar from "../_components/ratingStar";
 import FeedbackModal from "../_components/feedback";
 
 export default function Page() {
-  const router = useRouter();
-  const { id } = useParams();
+    const router = useRouter();
+    const { id } = useParams();
 
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+    const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await aiAction(id);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const response = await aiAction(id);
 
-        if (response.error) {
-          setError(response.message);
-        } else {
-          setResult(response);
+                if (response.error) {
+                    setError(response.message);
+                } else {
+                    setResult(response);
+                }
+            } catch (err) {
+                setError("Failed to load results. Please try again.");
+                console.log(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
+    const handleFeedbackSubmit = async (rating, comment, likeScore) => {
+        try {
+            const response = await submitFeedback(
+                id,
+                rating,
+                comment,
+                likeScore
+            );
+            if (response.success) {
+                setIsModalOpen(false);
+            } else {
+                throw new Error(response.message);
+            }
+        } catch (err) {
+            console.log("Failed to submit feedback:", err);
         }
-      } catch (err) {
-        setError("Failed to load results. Please try again.");
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
     };
 
-    fetchData();
-  }, [id]);
-
-  const handleFeedbackSubmit = async (rating, comment, likeScore) => {
-    try {
-      const response = await submitFeedback(id, rating, comment, likeScore);
-      if (response.success) {
-        setIsModalOpen(false);
-      } else {
-        throw new Error(response.message);
-      }
-    } catch (err) {
-      console.log("Failed to submit feedback:", err);
-    }
-  };
-
-  const handleClearResult = async () => {
-    if (window.confirm("Are you sure you want to clear this result?")) {
-      try {
-        const response = await clearResult(id);
-        if (response.success) {
-          router.push("/input");
+    const handleClearResult = async () => {
+        if (window.confirm("Are you sure you want to clear this result?")) {
+            try {
+                const response = await clearResult(id);
+                if (response.success) {
+                    router.push("/input");
+                }
+            } catch (err) {
+                console.log("Failed to clear result:", err);
+            }
         }
-      } catch (err) {
-        console.log("Failed to clear result:", err);
-      }
-    }
-  };
+    };
 
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-        <p className="mt-4 text-white">Analyzing your health data...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full text-white">
-        <h2 className="text-xl font-bold mb-4">Something went wrong</h2>
-        <p>{error}</p>
-        <button
-          onClick={() => router.push("/")}
-          className="mt-6 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded"
-        >
-          Go back
-        </button>
-      </div>
-    );
-  }
-
-  if (!result) {
-    return null;
-  }
-
-  let parsedDiseaseRisks;
-
-  try {
-    parsedDiseaseRisks = JSON.parse(result.diseaseRisk);
-    if (typeof parsedDiseaseRisks === "string") {
-      parsedDiseaseRisks = JSON.parse(parsedDiseaseRisks);
-    }
-  } catch (error) {
-    console.log("Error parsing JSON:", error);
-    parsedDiseaseRisks = [];
-  }
-
-  return (
-    <div className="flex flex-col w-full h-full text-white">
-      <div className="p-4">
-        <h2 className="text-xl font-bold mb-4">
-          {result.title || "Here's the Result"}
-        </h2>
-
-        <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-md p-6 mb-4 border-l-4 border-blue-500 shadow-lg">
-          <h3 className="text-xl font-bold mb-3 text-blue-300">
-            Health Assessment
-          </h3>
-          <div className="text-white leading-relaxed">
-            {result.roastComment.split(". ").map((sentence, index) =>
-              sentence.trim() ? (
-                <p key={index} className="mb-2">
-                  {sentence.trim() + (sentence.endsWith(".") ? "" : ".")}
-                </p>
-              ) : null
-            )}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div className="md:col-span-2 bg-gray-800 rounded-md p-5 shadow-md border-l-4 border-purple-500">
-            <h3 className="text-lg font-bold mb-3 text-purple-300">
-              Disease Risk:
-            </h3>
-            <div className="text-white">
-              {parsedDiseaseRisks.length > 0 ? (
-                <ul className="ml-4 space-y-2">
-                  {parsedDiseaseRisks?.map((risk, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="inline-block mr-2 text-purple-400">
-                        •
-                      </span>
-                      <span className="text-gray-100">
-                        Type: {risk.type} , Percentage : {risk.percentage}%
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="ml-4 text-gray-400">
-                  No specific disease risks identified
-                </p>
-              )}
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center h-full">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+                <p className="mt-4 text-white">Analyzing your health data...</p>
             </div>
-          </div>
+        );
+    }
 
-          <div className="bg-gray-800 rounded-md p-5 flex flex-col items-center justify-center shadow-md border-t-4 border-green-500">
-            <h3 className="text-lg font-bold mb-3 text-green-300">
-              Life expectancy
-            </h3>
-            <div className="text-5xl font-bold text-white">
-              {result.lifeExpectancy}
+    if (error) {
+        return (
+            <div className="flex flex-col items-center justify-center h-full text-white">
+                <h2 className="text-xl font-bold mb-4">Something went wrong</h2>
+                <p>{error}</p>
+                <button
+                    onClick={() => router.push("/")}
+                    className="mt-6 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded"
+                >
+                    Go back
+                </button>
             </div>
-            <div className="text-green-300 text-sm mt-2">years</div>
-          </div>
-        </div>
+        );
+    }
 
-        <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-md p-6 mb-6 shadow-lg border-l-4 border-yellow-500">
-          <h3 className="text-xl font-bold mb-3 text-yellow-300">
-            Recommendation
-          </h3>
-          <div className="text-white leading-relaxed">
-            {result.recommendation.split(". ").map((sentence, index) =>
-              sentence.trim() ? (
-                <p key={index} className="mb-2">
-                  <span className="text-yellow-400">✓</span>{" "}
-                  {sentence.trim() + (sentence.endsWith(".") ? "" : ".")}
-                </p>
-              ) : null
-            )}
-          </div>
-        </div>
+    if (!result) {
+        return null;
+    }
 
-        <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 rounded-md p-5 shadow-md border-t-2 border-gray-600">
-          <div className="flex items-center mb-4 sm:mb-0">
-            <RatingStar totalStars={5} />
-          </div>
-          <div className="flex space-x-3">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
-            >
-              Rate result
-            </button>
-            <button
-              onClick={handleClearResult}
-              className="px-5 py-2 bg-red-600 hover:bg-red-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
-            >
-              Clear result
-            </button>
-          </div>
-        </div>
-      </div>
+    let parsedDiseaseRisks;
 
-      <FeedbackModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleFeedbackSubmit}
-      />
-    </div>
-  );
+    try {
+        parsedDiseaseRisks = JSON.parse(result.diseaseRisk);
+        if (typeof parsedDiseaseRisks === "string") {
+            parsedDiseaseRisks = JSON.parse(parsedDiseaseRisks);
+        }
+    } catch (error) {
+        console.log("Error parsing JSON:", error);
+        parsedDiseaseRisks = [];
+    }
+
+    return (
+        <div className="flex flex-col w-full h-full text-white">
+            <div className="p-4">
+                <h2 className="text-xl font-bold mb-4">
+                    {result.title || "Here's the Result"}
+                </h2>
+
+                <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-md p-6 mb-4 border-l-4 border-blue-500 shadow-lg">
+                    <h3 className="text-xl font-bold mb-3 text-blue-300">
+                        Health Assessment
+                    </h3>
+                    <div className="text-white leading-relaxed">
+                        {result.roastComment
+                            .split(". ")
+                            .map((sentence, index) =>
+                                sentence.trim() ? (
+                                    <p key={index} className="mb-2">
+                                        {sentence.trim() +
+                                            (sentence.endsWith(".") ? "" : ".")}
+                                    </p>
+                                ) : null
+                            )}
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className="md:col-span-2 bg-gray-800 rounded-md p-5 shadow-md border-l-4 border-purple-500">
+                        <h3 className="text-lg font-bold mb-3 text-purple-300">
+                            Disease Risk:
+                        </h3>
+                        <div className="text-white">
+                            {parsedDiseaseRisks.length > 0 ? (
+                                <ul className="ml-4 space-y-2">
+                                    {parsedDiseaseRisks?.map((risk, index) => (
+                                        <li
+                                            key={index}
+                                            className="flex items-start"
+                                        >
+                                            <span className="inline-block mr-2 text-purple-400">
+                                                •
+                                            </span>
+                                            <span className="text-gray-100">
+                                                Type: {risk.type} , Percentage :{" "}
+                                                {risk.percentage}%
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="ml-4 text-gray-400">
+                                    No specific disease risks identified
+                                </p>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="bg-gray-800 rounded-md p-5 flex flex-col items-center justify-center shadow-md border-t-4 border-green-500">
+                        <h3 className="text-lg font-bold mb-3 text-green-300">
+                            Life expectancy
+                        </h3>
+                        <div className="text-5xl font-bold text-white">
+                            {result.lifeExpectancy}
+                        </div>
+                        <div className="text-green-300 text-sm mt-2">years</div>
+                    </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-md p-6 mb-6 shadow-lg border-l-4 border-yellow-500">
+                    <h3 className="text-xl font-bold mb-3 text-yellow-300">
+                        Recommendation
+                    </h3>
+                    <div className="text-white leading-relaxed">
+                        {result.recommendation
+                            .split(". ")
+                            .map((sentence, index) =>
+                                sentence.trim() ? (
+                                    <p key={index} className="mb-2">
+                                        <span className="text-yellow-400">
+                                            ✓
+                                        </span>{" "}
+                                        {sentence.trim() +
+                                            (sentence.endsWith(".") ? "" : ".")}
+                                    </p>
+                                ) : null
+                            )}
+                    </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 rounded-md p-5 shadow-md border-t-2 border-gray-600">
+                    <div className="flex items-center mb-4 sm:mb-0">
+                        <RatingStar totalStars={5} />
+                    </div>
+                    <div className="flex space-x-3">
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
+                        >
+                            Rate result
+                        </button>
+                        <button
+                            onClick={handleClearResult}
+                            className="px-5 py-2 bg-red-600 hover:bg-red-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
+                        >
+                            Clear result
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <FeedbackModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={handleFeedbackSubmit}
+            />
+        </div>
+    );
 }
