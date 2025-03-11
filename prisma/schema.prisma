@@ -38,8 +38,8 @@ model Input {
   workout        String
   smoking        Boolean
   alcohol        Boolean
-  sleepTime      Float
-  stress         Int
+  sleepTime      String
+  stress         String
   location       String
   roastLevel     String
   createdAt      DateTime @default(now())
