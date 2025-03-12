@@ -74,7 +74,7 @@ export const DataInput = ({ userId }) => {
           <option name="RoastLevel1" value="humble">
             Humble
           </option>
-          <option name="RoastLevel2" value="med">
+          <option name="RoastLevel2" value="mid">
             Medium Roasting
           </option>
           <option name="RoastLevel3" value="high">

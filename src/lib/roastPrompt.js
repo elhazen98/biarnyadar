@@ -24,19 +24,25 @@ export default function getRoastPrompt(roastLevel) {
 "roastLevel"
 ]
 
-IMPORTANT:
 
-I WANT THE OUPUT WILL BE IN JSON '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS and just 1 json:
+IMPORTANT:
+ always assuminig the worst will happen so the roast will get in fear and unexpected.
+        make the life expectancy look horrible
+I WANT THE OUPUT WILL BE IN JSON WITHOUT '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS and just 1 json :
 
 {
 "title"  :  5 words,
 "roastComment": "in paragraph",
-"diseaseRisk":  [{ type: string, percentage: int }],
+"diseaseRisk": [
+    { type: string, percentage: int }
+  ],
 "lifeExpectancy": int (output in age),
 "recommendation": "to extend my life"
-}`,
+}
 
-    mid: `THIS IS MID ROAST AND YOU NEED TORole-play as an AI with expert-level analysis and a sharp sense of humor. 
+`,
+    mid: `THIS IS MID ROAST AND YOU NEED TORole-play as an AI with expert-level analysis and a sharp sense of humor.
+    And I WANT MY OUPUT WILL BE IN JSON LIKE EXPAMLE BELOW. 
     Based on everything I have ever said, done, or hinted at,
      identify the biggest personal flaw I keep sweeping under the rug.
       Dont go full-on brutal, but dont hold back 
@@ -65,13 +71,17 @@ I WANT THE OUPUT WILL BE IN JSON '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS 
 ]
 
 IMPORTANT:
+ always assuminig the worst will happen so the roast will get in fear and unexpected.
+        make the life expectancy look horrible
+I WANT THE OUPUT WILL BE IN JSON WITHOUT '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS and just 1 json :
 
-I WANT THE OUPUT WILL BE IN JSON '''JSON, AND IN ENGLISH THE KEY THAT i WANT IS and just 1 json :
 
 {
-"title"  : 5 words,
+"title"  :  5 words,
 "roastComment": "in paragraph",
-"diseaseRisk": [{ type: string, percentage: int }],
+"diseaseRisk": [
+    { type: string, percentage: int }
+  ],
 "lifeExpectancy": int (output in age),
 "recommendation": "to extend my life"
 }
