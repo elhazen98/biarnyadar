@@ -47,7 +47,9 @@ export async function aiAction(id) {
     };
 
     const roastLevel = inputPrompt.roastLevel;
+    console.log(roastLevel);
     const response = await getResponsePrompt(prompt, roastLevel);
+    console.log(response);
     const responseParse = JSON.parse(response);
 
     console.log(responseParse);
