@@ -10,7 +10,6 @@ export async function aiAction(id) {
   });
 
   if (resultAvailable) {
-    
     const resultResponse = {
       lifeExpectancy: resultAvailable.lifeExpectancy,
       roastComment: resultAvailable.roastComment,
@@ -33,15 +32,11 @@ export async function aiAction(id) {
       console.log("Input not found");
     }
 
-    const bmi = parseFloat(
-      (inputPrompt.weight / (inputPrompt.height / 100) ** 2).toFixed(2)
-    );
-
     const prompt = {
       age: inputPrompt.age,
       height: inputPrompt.height,
       weight: inputPrompt.weight,
-      bmi: bmi,
+      bmi: inputPrompt.bmi,
       diet: inputPrompt.diet,
       workout: inputPrompt.workout,
       smoking: inputPrompt.smoking,
@@ -100,14 +95,12 @@ export async function submitFeedback(resultId, rating, comment, likeScore) {
       throw new Error("Input not found");
     }
 
- 
     const existingFeedback = await prisma.feedback.findFirst({
       where: { inputId: resultId },
     });
 
     let feedback;
-    
-  
+
     if (existingFeedback) {
       feedback = await prisma.feedback.update({
         where: { id: existingFeedback.id },
@@ -117,10 +110,7 @@ export async function submitFeedback(resultId, rating, comment, likeScore) {
           tersadarkan: parseInt(likeScore, 10),
         },
       });
-      
-    } 
- 
-    else {
+    } else {
       feedback = await prisma.feedback.create({
         data: {
           inputId: resultId,
@@ -130,7 +120,6 @@ export async function submitFeedback(resultId, rating, comment, likeScore) {
           userId: userInput.userId,
         },
       });
-     
     }
 
     revalidatePath(`/result/${resultId}`);
@@ -169,16 +158,16 @@ export async function clearResult(resultId) {
 export async function getFeedback(resultId) {
   try {
     const feedback = await prisma.feedback.findFirst({
-      where: { inputId : resultId },
-      orderBy: { createdAt: 'desc' }
+      where: { inputId: resultId },
+      orderBy: { createdAt: "desc" },
     });
-    
+
     return { success: true, feedback };
   } catch (error) {
     console.error("Error getting feedback:", error);
-    return { 
-      error: true, 
-      message: error.message || "Failed to get feedback"
+    return {
+      error: true,
+      message: error.message || "Failed to get feedback",
     };
   }
 }
