@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { aiAction, submitFeedback, clearResult } from "./action";
-import RatingStar from "../_components/ratingStar";
+import { aiAction, submitFeedback, clearResult, getFeedback } from "./action";
 import FeedbackModal from "../_components/feedback";
 
 export default function Page() {
@@ -14,26 +13,48 @@ export default function Page() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userRating, setUserRating] = useState(0);
+    const [hasRated, setHasRated] = useState(false);
+    
+
+    const [starRating, setStarRating] = useState(0);
+
+    const fetchFeedback = async () => {
+        try {
+            const feedbackResponse = await getFeedback(id);
+            if (feedbackResponse.success && feedbackResponse.feedback) {
+                setUserRating(feedbackResponse.feedback.rating);
+                setStarRating(feedbackResponse.feedback.rating); 
+                setHasRated(true);
+                return true;
+            }
+            return false;
+        } catch (feedbackErr) {
+           
+            return false;
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                setLoading(true);
-                const response = await aiAction(id);
-
-                if (response.error) {
-                    setError(response.message);
-                } else {
-                    setResult(response);
-                }
-            } catch (err) {
-                setError("Failed to load results. Please try again.");
-                console.log(err);
-            } finally {
-                setLoading(false);
+          try {
+            setLoading(true);
+            const response = await aiAction(id);
+            
+            if (response.error) {
+              setError(response.message);
+            } else {
+              setResult(response);
+              await fetchFeedback();
             }
+          } catch (err) {
+            setError("Failed to load results. Please try again.");
+   
+          } finally {
+            setLoading(false);
+          }
         };
-
+    
         fetchData();
     }, [id]);
 
@@ -45,13 +66,20 @@ export default function Page() {
                 comment,
                 likeScore
             );
+            
             if (response.success) {
+            
+                setUserRating(rating);
+                setStarRating(rating); 
+                setHasRated(true);
                 setIsModalOpen(false);
+                
             } else {
                 throw new Error(response.message);
             }
         } catch (err) {
-            console.log("Failed to submit feedback:", err);
+       
+            alert("Failed to submit feedback. Please try again.");
         }
     };
 
@@ -66,6 +94,18 @@ export default function Page() {
                 console.log("Failed to clear result:", err);
             }
         }
+    };
+
+
+    const renderStars = (rating) => {
+        return Array(5).fill().map((_, i) => (
+            <span 
+                key={i} 
+                className={`text-2xl ${i < rating ? "text-yellow-400" : "text-gray-400"}`}
+            >
+                ★
+            </span>
+        ));
     };
 
     if (loading) {
@@ -104,7 +144,7 @@ export default function Page() {
             parsedDiseaseRisks = JSON.parse(parsedDiseaseRisks);
         }
     } catch (error) {
-        console.log("Error parsing JSON:", error);
+        
         parsedDiseaseRisks = [];
     }
 
@@ -139,7 +179,7 @@ export default function Page() {
                             Disease Risk:
                         </h3>
                         <div className="text-white">
-                            {parsedDiseaseRisks.length > 0 ? (
+                            {parsedDiseaseRisks && parsedDiseaseRisks.length > 0 ? (
                                 <ul className="ml-4 space-y-2">
                                     {parsedDiseaseRisks?.map((risk, index) => (
                                         <li
@@ -198,14 +238,18 @@ export default function Page() {
 
                 <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 rounded-md p-5 shadow-md border-t-2 border-gray-600">
                     <div className="flex items-center mb-4 sm:mb-0">
-                        <RatingStar totalStars={5} />
+                
+                        <div className="flex items-center">
+                            {renderStars(starRating)}
+                        </div>
+             
                     </div>
                     <div className="flex space-x-3">
                         <button
                             onClick={() => setIsModalOpen(true)}
                             className="px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
                         >
-                            Rate result
+                            {hasRated ? "Update rating" : "Rate result"}
                         </button>
                         <button
                             onClick={handleClearResult}
@@ -221,6 +265,7 @@ export default function Page() {
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onSubmit={handleFeedbackSubmit}
+                initialRating={userRating}
             />
         </div>
     );

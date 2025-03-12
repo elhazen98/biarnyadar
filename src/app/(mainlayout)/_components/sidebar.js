@@ -14,8 +14,8 @@ export const Sidebar = async ({ userId }) => {
                         {results.map((result) => (
                             <Link
                                 className=""
-                                href={`/result/${result.id}`}
-                                key={result.id}
+                                href={`/result/${result.inputId}`}
+                                key={result.inputId}
                             >
                                 <div className="w-full text-sm rounded-lg transition duration-150 text-slate-300 hover:bg-purple-300 hover:text-slate-900 hover:shadow-lg p-2 bg-slate-700/50 font-bold">
                                     {result.title}

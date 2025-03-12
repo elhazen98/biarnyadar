@@ -1,34 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RatingStar from "./ratingStar";
 
-export default function FeedbackModal({ isOpen, onClose, onSubmit }) {
-  const [rating, setRating] = useState(0);
+
+export default function FeedbackModal({ isOpen, onClose, onSubmit, initialRating = 0 }) {
+  const [rating, setRating] = useState(initialRating);
   const [comment, setComment] = useState("");
   const [likeScore, setLikeScore] = useState(50);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  useEffect(() => {
+    setRating(initialRating);
+  }, [initialRating]);
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     if (rating === 0) {
       alert("Please select a rating");
       return;
     }
-
+    
     setIsSubmitting(true);
-
+    
     try {
       await onSubmit(rating, comment, likeScore);
-
-      setRating(0);
+     
       setComment("");
       setLikeScore(50);
     } catch (error) {
-      console.log("Error submitting feedback:", error);
+      console.error("Error submitting feedback:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -37,27 +42,23 @@ export default function FeedbackModal({ isOpen, onClose, onSubmit }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4 text-white">
-          Rate your experience
-        </h2>
-
+        <h2 className="text-xl font-bold mb-4 text-white">Rate your experience</h2>
+        
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-300 mb-2">Rating</label>
             <div className="flex justify-center">
-              <RatingStar
-                totalStars={5}
-                initialRating={rating}
-                readonly={false}
-                onChange={setRating}
+              <RatingStar 
+                totalStars={5} 
+                initialRating={rating} 
+                readonly={false} 
+                onChange={setRating} 
               />
             </div>
           </div>
-
+          
           <div className="mb-4">
-            <label className="block text-gray-300 mb-2">
-              How much did you like it? ({likeScore}%)
-            </label>
+            <label className="block text-gray-300 mb-2">How much did you like it? ({likeScore}%)</label>
             <input
               type="range"
               min="1"
@@ -67,11 +68,9 @@ export default function FeedbackModal({ isOpen, onClose, onSubmit }) {
               className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
           </div>
-
+          
           <div className="mb-6">
-            <label className="block text-gray-300 mb-2">
-              Comments (optional)
-            </label>
+            <label className="block text-gray-300 mb-2">Comments (optional)</label>
             <textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
@@ -80,7 +79,7 @@ export default function FeedbackModal({ isOpen, onClose, onSubmit }) {
               placeholder="Share your thoughts..."
             ></textarea>
           </div>
-
+          
           <div className="flex justify-end space-x-2">
             <button
               type="button"

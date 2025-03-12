@@ -10,6 +10,7 @@ export async function aiAction(id) {
   });
 
   if (resultAvailable) {
+    
     const resultResponse = {
       lifeExpectancy: resultAvailable.lifeExpectancy,
       roastComment: resultAvailable.roastComment,
@@ -89,26 +90,53 @@ export async function aiAction(id) {
   }
 }
 
-export async function submitFeedback(resultId, rating, comment, tersadarkan) {
+export async function submitFeedback(resultId, rating, comment, likeScore) {
   try {
     const userInput = await prisma.input.findUnique({
       where: { id: resultId },
     });
 
-    const feedback = await prisma.feedback.create({
-      data: {
-        inputId: resultId,
-        rating: parseInt(rating, 10),
-        comment,
-        tersadarkan: parseInt(tersadarkan, 10),
-        userId: userInput.userId,
-      },
+    if (!userInput) {
+      throw new Error("Input not found");
+    }
+
+ 
+    const existingFeedback = await prisma.feedback.findFirst({
+      where: { inputId: resultId },
     });
+
+    let feedback;
+    
+  
+    if (existingFeedback) {
+      feedback = await prisma.feedback.update({
+        where: { id: existingFeedback.id },
+        data: {
+          rating: parseInt(rating, 10),
+          comment,
+          tersadarkan: parseInt(likeScore, 10),
+        },
+      });
+      
+    } 
+ 
+    else {
+      feedback = await prisma.feedback.create({
+        data: {
+          inputId: resultId,
+          rating: parseInt(rating, 10),
+          comment,
+          tersadarkan: parseInt(likeScore, 10),
+          userId: userInput.userId,
+        },
+      });
+     
+    }
 
     revalidatePath(`/result/${resultId}`);
     return { success: true, feedback };
   } catch (error) {
-    console.error("Error submitting feedback:", error);
+    console.log("Error submitting feedback:", error);
     return {
       error: true,
       message: error.message || "Failed to submit feedback",
@@ -134,6 +162,23 @@ export async function clearResult(resultId) {
     return {
       error: true,
       message: error.message || "Failed to clear result",
+    };
+  }
+}
+
+export async function getFeedback(resultId) {
+  try {
+    const feedback = await prisma.feedback.findFirst({
+      where: { inputId : resultId },
+      orderBy: { createdAt: 'desc' }
+    });
+    
+    return { success: true, feedback };
+  } catch (error) {
+    console.error("Error getting feedback:", error);
+    return { 
+      error: true, 
+      message: error.message || "Failed to get feedback"
     };
   }
 }
