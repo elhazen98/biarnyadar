@@ -1,15 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function RatingStar({
-  totalStars = 5,
-  initialRating = 0,
-  readonly = true,
-  onChange,
-}) {
+export default function RatingStar({ totalStars = 5, initialRating = 0, readonly = true, onChange }) {
   const [hoveredRating, setHoveredRating] = useState(0);
   const [selectedRating, setSelectedRating] = useState(initialRating);
+
+  useEffect(() => {
+    setSelectedRating(initialRating);
+  }, [initialRating]);
 
   const handleMouseEnter = (rating) => {
     if (readonly) return;
@@ -32,11 +31,11 @@ export default function RatingStar({
       {[...Array(totalStars)].map((_, i) => {
         const rating = i + 1;
         const isActive = rating <= (hoveredRating || selectedRating);
-
+        
         return (
           <span
             key={i}
-            className={`text-2xl cursor-${readonly ? "default" : "pointer"} ${
+            className={`text-2xl cursor-${readonly ? 'default' : 'pointer'} ${
               isActive ? "text-yellow-400" : "text-gray-400"
             }`}
             onMouseEnter={() => handleMouseEnter(rating)}
