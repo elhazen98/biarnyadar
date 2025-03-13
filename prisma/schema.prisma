@@ -36,8 +36,8 @@ model Input {
   bmi            Float
   diet           String
   workout        String
-  smoking        Boolean
-  alcohol        Boolean
+  smoking        String
+  alcohol        String
   sleepTime      String
   stress         String
   location       String

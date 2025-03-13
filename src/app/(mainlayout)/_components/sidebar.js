@@ -14,18 +14,18 @@ export const Sidebar = async ({ userId }) => {
                             <div className="font-bold text-xl mb-8">
                                 History
                             </div>
-                            <div className="flex flex-col gap-2"></div>
-                            {results.map((result) => (
-                                <Link
-                                    className=""
-                                    href={`/result/${result.inputId}`}
-                                    key={result.inputId}
-                                >
-                                    <div className="w-full text-sm rounded-lg transition duration-150 text-slate-300 hover:bg-purple-300 hover:text-slate-900 hover:shadow-lg p-2 bg-slate-700/50 font-bold">
-                                        {result.title}
-                                    </div>
-                                </Link>
-                            ))}
+                            <div className="flex flex-col gap-2">
+                                {results.map((result) => (
+                                    <Link
+                                        href={`/result/${result.inputId}`}
+                                        key={result.inputId}
+                                    >
+                                        <div className="w-full text-sm rounded-lg transition duration-150 text-slate-300 hover:bg-purple-300 hover:text-slate-900 hover:shadow-lg p-2 bg-slate-700/50 font-bold">
+                                            {result.title}
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                         <Link
                             href={"/input"}

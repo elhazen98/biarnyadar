@@ -29,11 +29,15 @@ export default function Home() {
             <div className="m-auto max-w-7xl w-3/4">
                 <section>
                     <section className="h-screen p-24">
-                        <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-256px)] sm:text-6xl md:text-8xl gap-8">
+                        <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-256px)] gap-8">
                             <div className="space-y-2 ">
-                                <h1>{"You've got 30 years left."}</h1>
+                                <h1 className="sm:text-5xl md:text-7xl">
+                                    {"You've got 30 years left."}
+                                </h1>
                                 {/* <h1></h1> */}
-                                <h1 className="font-bold">Sure about that?</h1>
+                                <h1 className="font-bold sm:text-5xl md:text-7xl">
+                                    Sure about that?
+                                </h1>
                             </div>
                             <h2 className="text-slate-400 sm:text-xl md:text-2xl">
                                 {
