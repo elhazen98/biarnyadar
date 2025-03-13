@@ -10,19 +10,24 @@ export async function dataInputAction(_, formData) {
     const id = createId();
     const userId = formData.get("userId");
     const age = Number(formData.get("age"));
+    const sex = formData.get("sex");
     const height = Number(formData.get("height"));
     const weight = Number(formData.get("weight"));
     const bmi = weight / (height / 100) ** 2;
-    const diet = formData.get("diet");
+    const fastfood = `i'am a ${sex}, eat fastfood: ${formData.get("fastfood")}`;
+    const oily = `eat oily: ${formData.get("oily")}`;
+    const sugar = `consume sugar: ${formData.get("sugar")}`;
+    const fruit = `consume fruit & fegetables: ${formData.get("fruit")}`;
+    const diet = `${fastfood} ${oily} ${sugar} ${fruit}`;
     const workout = formData.get("workout");
-    const smoking = formData.get("smoking") === "Ya";
-    const alcohol = formData.get("alcohol") === "Ya";
+    const smoking = formData.get("smoking");
+    const alcohol = formData.get("alcohol");
     const sleepTime = formData.get("sleepTime");
     const stress = formData.get("stress");
     const location = formData.get("location");
     const roastLevel = formData.get("roastLevel");
 
-    if (!age || !height || !weight) {
+    if (!age || !sex || !height || !weight) {
         return { status: "error", message: "All fields are required" };
     }
 

@@ -6,7 +6,8 @@ export default async function Page() {
     const userId = session.user.id;
 
     return (
-        <main className="max-w-xl m-auto py-2">
+        <main className="w-full h-full p-4">
+            <div className="text-xl font-bold">Tell me about you.</div>
             <DataInput userId={userId} />
         </main>
     );

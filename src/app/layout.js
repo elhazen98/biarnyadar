@@ -1,9 +1,8 @@
-import { Funnel_Display, Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Funnel_Display, Geist, Geist_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const addfont = Funnel_Display({
+const addfont = DM_Sans({
     subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const geistSans = Geist({
