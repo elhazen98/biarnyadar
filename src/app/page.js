@@ -196,14 +196,20 @@ export default function Home() {
                                         Important Notice
                                     </h3>
                                     <p className="text-lg">
-                                        Biarnyadar provides predictions and
-                                        assessments based on statistical models
-                                        and data analytics. These predictions
-                                        are not guaranteed and should not
-                                        replace professional medical, financial,
-                                        or legal advice. Always consult with
-                                        qualified professionals for important
-                                        life decisions.
+                                        <span className="font-bold">
+                                            biarnyadar
+                                        </span>{" "}
+                                        provides health predictions and
+                                        lifestyle assessments based on
+                                        statistical models and data analysis.
+                                        These insights are for informational
+                                        purposes only and are not a substitute
+                                        for professional medical, financial, or
+                                        legal advice. While we aim for accuracy,
+                                        no prediction is guaranteed. Always
+                                        consult a qualified professional before
+                                        making important health or life
+                                        decisions
                                     </p>
                                 </div>
                             </div>
@@ -235,10 +241,23 @@ export default function Home() {
                                     <h3 className="text-2xl font-bold text-center sm:text-left mb-2">
                                         Your data secure with us
                                     </h3>
-                                    <p>
-                                        At Biarnyadar, we take your privacy
-                                        seriously. All personal data is
-                                        encrypted and stored securely.
+                                    <p className="text-lg">
+                                        At{" "}
+                                        <span className="font-bold">
+                                            biarnyadar
+                                        </span>
+                                        , we take your privacy seriously. All
+                                        personal data you provide is encrypted
+                                        and securely stored. We do not sell,
+                                        share, or misuse your information. Your
+                                        inputs are used solely to generate
+                                        insights and are not retained beyond
+                                        what is necessary for analysis. We
+                                        follow strict security measures to
+                                        protect your data, ensuring
+                                        confidentiality and compliance with best
+                                        privacy practices. Your health is
+                                        personal, and so is your data.
                                     </p>
                                 </div>
                             </div>
