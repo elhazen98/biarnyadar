@@ -12,6 +12,7 @@
     "@heroui/react": "^2.7.4",
     "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^6.4.1",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-slider": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.2",
     "@tailwindcss/oxide-linux-x64-gnu": "^4.0.11",
@@ -22,7 +23,6 @@
     "cuid": "^3.0.0",
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^12.4.7",
-    "lightningcss-linux-x64-gnu": "^1.29.2",
     "lucide-react": "^0.477.0",
     "next": "15.2.0",
     "openai": "^4.86.2",
@@ -38,5 +38,16 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.0",
     "tailwindcss": "^4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@heroui/shared-utils",
+      "@prisma/client",
+      "@prisma/engines",
+      "bcrypt",
+      "esbuild",
+      "prisma",
+      "sharp"
+    ]
   }
 }
