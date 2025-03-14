@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ExampleCarousel } from "./_components/example";
 
 export default function Home() {
     return (
@@ -29,20 +30,16 @@ export default function Home() {
             <div className="m-auto max-w-7xl w-3/4">
                 <section>
                     <section className="h-screen p-24">
-                        <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-256px)] gap-8">
-                            <div className="space-y-2 ">
-                                <h1 className="sm:text-5xl md:text-7xl">
-                                    {"You've got 30 years left."}
-                                </h1>
+                        <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-256px)] gap-12">
+                            <div className="space-y-4">
+                                <h1 className="text-9xl">Enjoying life?</h1>
                                 {/* <h1></h1> */}
-                                <h1 className="font-bold sm:text-5xl md:text-7xl">
-                                    Sure about that?
+                                <h1 className="text-6xl font-bold">
+                                    Your body might not agree.
                                 </h1>
                             </div>
                             <h2 className="text-slate-400 sm:text-xl md:text-2xl">
-                                {
-                                    "Evaluate your quality of life—before it's too late."
-                                }
+                                {"Let's check before it's too late."}
                             </h2>
                             <Link
                                 href="/register"
@@ -90,23 +87,20 @@ export default function Home() {
                             </Link>
                         </div>
                     </section>
-                    <section id="description" className="pt-24">
+                    <section id="description" className="pt-28">
                         <h2 className="font-bold text-3xl text-center mb-10">
                             Description
                         </h2>
                         <div className="mt-8 p-6 bg-gradient-to-r from-indigo-900 to-purple-900 rounded-2xl backdrop-blur-sm shadow-lg">
                             <p className="text-lg leading-relaxed text-center">
-                                biarnyadar is an AI-powered web application that
-                                analyzes your daily habits and health data to
-                                predict your life expectancy, potential disease
-                                risks, and suggest a healthier lifestyle. With a
-                                touch of sarcastic roasting, this app makes
-                                users aware of their unhealthy choices in a fun
-                                yet effective way.
+                                <span className="font-bold">biarnyadar</span>{" "}
+                                {
+                                    "helps you reflect on your lifestyle and how it impacts your health. By analyzing your habits—diet, exercise, sleep, stress, and more—our AI provides insights into your well-being, potential health risks, and life expectancy. It's not about fear, but awareness. Small changes today can lead to a healthier future."
+                                }
                             </p>
                         </div>
                     </section>
-                    <section id="how-to-use" className="pt-24">
+                    <section id="how-to-use" className="pt-28">
                         <h2 className="font-bold text-3xl text-center mb-8">
                             How To Use
                         </h2>
@@ -169,80 +163,13 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-                    <section id="examples" className="pt-24">
+                    <section id="examples" className="pt-28">
                         <h2 className="text-3xl font-bold mb-8 text-center">
                             Examples
                         </h2>
-                        <Card className="bg-gradient-to-r from-indigo-900 to-purple-900 border-none">
-                            <CardContent className="">
-                                <div className="flex justify-center items-center flex-col space-y-6">
-                                    <h2 className="text-white font-bold text-2xl">
-                                        What our AI looks like
-                                    </h2>
-                                    <div className="p-6 rounded-2xl bg-white/5 border border-white/20 shadow-md">
-                                        <div className="flex items-center mb-4">
-                                            <p className="flex text-white font-bold items-center">
-                                                <span className="text-4xl pr-2">
-                                                    🤨{" "}
-                                                </span>
-                                                Sarcastic Mode
-                                            </p>
-                                        </div>
-                                        <p className="text-white italic">
-                                            Oh wow, look at you, a true pioneer
-                                            of modern laziness! Your diet is
-                                            basically a science experiment gone
-                                            wrong, and your workout routine?
-                                            Yeah, blinking doesnt count as
-                                            cardio. With sleep patterns that
-                                            scream I have no idea what circadian
-                                            rhythm means, your body is basically
-                                            running on spite and caffeine at
-                                            this point. But hey, who needs
-                                            longevity when you can have instant
-                                            gratification and chronic fatigue?
-                                            Keep going like this, and your body
-                                            might just file for early
-                                            retirement. But if—just if—you dont
-                                            want your heart giving up on you
-                                            like an old iPhone battery, maybe
-                                            try something radical, like drinking
-                                            actual water or walking further than
-                                            the distance from your couch to the
-                                            fridge. Just a thought.
-                                        </p>
-                                    </div>
-                                    <div className="p-6 rounded-2xl bg-white/5 border border-white/20 shadow-md">
-                                        <div className="flex items-center mb-4">
-                                            <p className="flex text-white font-bold items-center">
-                                                <span className="text-4xl pr-2">
-                                                    🫠{" "}
-                                                </span>
-                                                Humble Mode
-                                            </p>
-                                        </div>
-                                        <p className="text-white italic">
-                                            Hey, no judgment, but your body
-                                            might appreciate a little more love.
-                                            Right now, its running on low fuel,
-                                            bad sleep, and some questionable
-                                            food choices, which might not be the
-                                            best long-term strategy. The good
-                                            news? Small tweaks—like drinking
-                                            more water, getting a little
-                                            movement in, and not treating sleep
-                                            like an optional side quest—can make
-                                            a huge difference. No need to
-                                            overhaul everything overnight, just
-                                            start somewhere! Your future self
-                                            will be very grateful.
-                                        </p>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                        <ExampleCarousel />
                     </section>
-                    <section id="disclaimer" className="pt-24">
+                    <section id="disclaimer" className="pt-28">
                         <h2 className="text-3xl font-bold text-center mb-8">
                             Disclaimer
                         </h2>
@@ -282,7 +209,7 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-                    <section id="privacy-policy" className="pt-24">
+                    <section id="privacy-policy" className="pt-28">
                         <h2 className="text-3xl text-center font-bold mb-8">
                             Privacy Policy
                         </h2>
