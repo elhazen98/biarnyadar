@@ -38,7 +38,7 @@ export const ExampleCard = ({
                                     Disease Risk
                                 </p>
                             </div>
-                            <p className="text-white">
+                            <div className="text-white">
                                 {firstDiseaseRisk.map((disease) => {
                                     return (
                                         <div key={disease.type}>
@@ -47,7 +47,7 @@ export const ExampleCard = ({
                                         </div>
                                     );
                                 })}
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
