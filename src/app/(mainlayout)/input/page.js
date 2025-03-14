@@ -7,7 +7,7 @@ export default async function Page() {
 
     return (
         <main className="w-full h-full p-4">
-            <div className="text-xl font-bold">Tell me about you.</div>
+            {/* <div className="text-xl font-bold">Tell me about you.</div> */}
             <DataInput userId={userId} />
         </main>
     );
