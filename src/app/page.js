@@ -12,7 +12,7 @@ import { BiRightArrowAlt } from "react-icons/bi";
 
 export default function Home() {
     return (
-        <div className="bg-gradient-to-b to-gray-800 from-slate-950 text-slate-200">
+        <div className="bg-slate-950 text-slate-200">
             <div className="fixed flex w-full shadow-lg z-50 backdrop-blur-md py-8 justify-center">
                 <header className="w-7xl flex justify-between px-4 items-center">
                     <div className="text-2xl flex space-x-2">
@@ -29,7 +29,7 @@ export default function Home() {
                             href="/login"
                             className="font-semibold px-4 py-2 text-slate-400 rounded-full items-center hover:text-white duration-150"
                         >
-                            Log In
+                            Login
                         </Link>
                         <Link
                             href="/register"
@@ -57,7 +57,7 @@ export default function Home() {
                                 {"Let's check before it's too late."}
                             </h2>
                             <Link href="/login">
-                                <button className="rounded-full py-4 px-6 bg-gradient-to-r from-indigo-800 to-purple-800 hover:brightness-150 animate-pulse flex items-center gap-4">
+                                <button className="rounded-full py-4 px-6 bg-gradient-to-r from-indigo-800 to-violet-900 hover:brightness-150 animate-pulse flex items-center gap-4">
                                     <div className="text-xl">
                                         Try{" "}
                                         <span className="font-bold">
@@ -111,7 +111,7 @@ export default function Home() {
                         <h2 className="font-bold text-3xl text-center mb-10">
                             Description
                         </h2>
-                        <div className="mt-8 p-6 bg-gradient-to-r from-indigo-900 to-purple-900 rounded-2xl backdrop-blur-sm shadow-lg">
+                        <div className="mt-8 p-6 bg-gradient-to-r from-indigo-900 to-violet-900 rounded-2xl backdrop-blur-sm shadow-lg">
                             <p className="text-lg leading-relaxed text-center">
                                 <span className="font-bold">biarnyadar</span>{" "}
                                 {
@@ -126,7 +126,7 @@ export default function Home() {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="flex items-start bg-slate-800 border border-slate-700 rounded-2xl backdrop-blur-sm shadow-lg p-6">
-                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-purple-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
+                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-violet-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
                                     1
                                 </div>
                                 <div>
@@ -140,7 +140,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="flex items-start bg-slate-800 border border-slate-700 rounded-2xl backdrop-blur-sm shadow-lg p-6">
-                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-purple-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
+                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-violet-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
                                     2
                                 </div>
                                 <div>
@@ -154,7 +154,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="flex items-start bg-slate-800 border border-slate-700 rounded-2xl backdrop-blur-sm shadow-lg p-6">
-                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-purple-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
+                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-violet-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
                                     3
                                 </div>
                                 <div>
@@ -168,7 +168,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="flex items-start bg-slate-800 border border-slate-700 rounded-2xl backdrop-blur-sm shadow-lg p-6">
-                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-purple-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
+                                <div className="font-bold rounded-full bg-gradient-to-r from-indigo-900 to-violet-900 mr-4 w-10 h-10 flex justify-center items-center shadow-xl">
                                     4
                                 </div>
                                 <div>

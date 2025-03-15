@@ -18,7 +18,7 @@ export default async function Layout({ children }) {
     return (
         <div
             name="mainbackground"
-            className="min-h-screen flex flex-col justify-between bg-gradient-to-br from-slate-950 to-gray-800 text-white"
+            className="min-h-screen flex flex-col justify-between bg-slate-950 text-slate-200"
         >
             <Header name={name} email={email} />
             <div className="flex flex-grow h-full">
