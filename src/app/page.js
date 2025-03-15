@@ -2,11 +2,18 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ExampleCarousel } from "./_components/example";
 import Image from "next/image";
+import { BiChild } from "react-icons/bi";
+import { BiError } from "react-icons/bi";
+import { BiPencil } from "react-icons/bi";
+import { BiBulb } from "react-icons/bi";
+import { BiCoffee } from "react-icons/bi";
+import { BiLockAlt } from "react-icons/bi";
+import { BiRightArrowAlt } from "react-icons/bi";
 
 export default function Home() {
     return (
-        <div className="bg-gradient-to-b to-gray-800 from-slate-950 text-white">
-            <div className="fixed flex w-full shadow-lg z-50 backdrop-blur-lg py-8 justify-center">
+        <div className="bg-gradient-to-b to-gray-800 from-slate-950 text-slate-200">
+            <div className="fixed flex w-full shadow-lg z-50 backdrop-blur-md py-8 justify-center">
                 <header className="w-7xl flex justify-between px-4 items-center">
                     <div className="text-2xl flex space-x-2">
                         <Image
@@ -22,11 +29,11 @@ export default function Home() {
                             href="/login"
                             className="font-semibold px-4 py-2 text-slate-400 rounded-full items-center hover:text-white duration-150"
                         >
-                            Login
+                            Log In
                         </Link>
                         <Link
                             href="/register"
-                            className="font-semibold px-4 py-2 bg-white text-slate-950 rounded-full items-center hover:bg-indigo-800 hover:text-white duration-150"
+                            className="font-semibold px-4 py-2 text-slate-400 bg-indigo-950 rounded-full items-center hover:bg-indigo-800 hover:text-white duration-150"
                         >
                             Sign Up
                         </Link>
@@ -35,61 +42,68 @@ export default function Home() {
             </div>
             <div className="m-auto max-w-7xl w-3/4">
                 <section>
-                    <section className="h-screen p-24">
-                        <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-256px)] gap-12">
+                    <section className="h-screen pt-24">
+                        <div className="flex flex-col items-center justify-center text-center h-[calc(100vh-192px)] gap-12">
                             <div className="space-y-4">
-                                <h1 className="text-9xl">Enjoying life?</h1>
+                                <h1 className="text-9xl font-bold">
+                                    Enjoying life?
+                                </h1>
                                 {/* <h1></h1> */}
                                 <h1 className="text-6xl font-bold">
                                     Your body might not agree.
                                 </h1>
                             </div>
-                            <h2 className="text-slate-400 sm:text-xl md:text-2xl">
+                            <h2 className="text-slate-400 md:text-2xl">
                                 {"Let's check before it's too late."}
                             </h2>
-                            <Link
-                                href="/register"
-                                className="flex items-center"
-                            >
-                                <Button className="rounded-full text-xl py-6 px-8 bg-gradient-to-r from-indigo-800 to-purple-800 hover:brightness-150 animate-pulse">
-                                    Try{" "}
-                                    <span className="font-bold">
-                                        biarnyadar
-                                    </span>{" "}
-                                    Now
-                                </Button>
+                            <Link href="/login">
+                                <button className="rounded-full py-4 px-6 bg-gradient-to-r from-indigo-800 to-purple-800 hover:brightness-150 animate-pulse flex items-center gap-4">
+                                    <div className="text-xl">
+                                        Try{" "}
+                                        <span className="font-bold">
+                                            biarnyadar
+                                        </span>{" "}
+                                        Now
+                                    </div>
+                                    <BiRightArrowAlt size={30} />
+                                </button>
                             </Link>
                         </div>
-                        <div className="flex justify-around items-center h-32 font-semibold text-slate-400">
+                        <div className="flex justify-between items-center h-24 font-semibold text-slate-400">
                             <Link
                                 href="#description"
-                                className="hover:text-white duration-150"
+                                className="hover:text-white duration-150 flex items-center gap-1"
                             >
-                                Description
+                                <BiPencil size={20} />
+                                <div>Description</div>
                             </Link>
                             <Link
                                 href="#how-to-use"
-                                className="hover:text-white duration-150"
+                                className="hover:text-white duration-150 flex items-center gap-1"
                             >
-                                How To Use
+                                <BiBulb size={20} />
+                                <div>How To Use</div>
                             </Link>
                             <Link
                                 href="#examples"
-                                className="hover:text-white duration-150"
+                                className="hover:text-white duration-150 flex items-center gap-1"
                             >
-                                Examples
+                                <BiCoffee size={20} />
+                                <div>Examples</div>
                             </Link>
                             <Link
                                 href="#disclaimer"
-                                className="hover:text-white duration-150"
+                                className="hover:text-white duration-150 flex items-center gap-1"
                             >
-                                Disclaimer
+                                <BiError size={20} />
+                                <div>Disclaimer</div>
                             </Link>
                             <Link
                                 href="#privacy-policy"
-                                className="hover:text-white duration-150"
+                                className="hover:text-white duration-150 flex items-center gap-1"
                             >
-                                Privacy Policy
+                                <BiLockAlt size={20} />
+                                <div>Privacy Policy</div>
                             </Link>
                         </div>
                     </section>
