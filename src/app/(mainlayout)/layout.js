@@ -23,8 +23,8 @@ export default async function Layout({ children }) {
             <Header name={name} email={email} />
             <div className="flex flex-grow h-full">
                 <Sidebar userId={id} />
-                <div className="w-full pr-4">
-                    <div className="flex items-center justify-center h-full border border-slate-700/50 rounded-xl from-gray-800/20 to-gray-700/20 backdrop-blur-md shadow-lg bg-gradient-to-b">
+                <div className="w-full">
+                    <div className="flex items-center justify-center h-full">
                         {children}
                     </div>
                 </div>

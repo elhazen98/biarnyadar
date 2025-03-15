@@ -92,8 +92,8 @@ export const DataInput = ({ userId }) => {
     };
 
     return (
-        <div className="h-full text-white px-4 py-8">
-            <div className="max-w-3xl mx-auto">
+        <div className="h-full text-slate-200">
+            <div className="w-full">
                 <h2 className="font-bold text-xl mb-2">
                     {" "}
                     Tell us about your lifestyle to get personalized
@@ -184,7 +184,7 @@ export const DataInput = ({ userId }) => {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                    <div className="border border-black rounded-md p-6">
+                    <div className="rounded-lg p-6 bg-gradient-to-r from-indigo-950 to-violet-950">
                         {activeTab === "basic-info" && (
                             <div>
                                 <h2 className="text-2xl font-bold mb-1">
@@ -213,7 +213,6 @@ export const DataInput = ({ userId }) => {
                                             type="text"
                                             value={formData.age}
                                             onChange={handleChange}
-                                            className="border border-gray-800 rounded-md text-white"
                                             placeholder="Input your age"
                                         />
                                     </div>
@@ -230,10 +229,10 @@ export const DataInput = ({ userId }) => {
                                                 handleSelectChange("sex", value)
                                             }
                                         >
-                                            <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                                            <SelectTrigger className="rounded-md text-slate-200">
                                                 <SelectValue placeholder="Select your gender" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800 rounded-md">
+                                            <SelectContent>
                                                 <SelectItem value="male">
                                                     Male
                                                 </SelectItem>
@@ -259,7 +258,6 @@ export const DataInput = ({ userId }) => {
                                             name="height"
                                             value={formData.height}
                                             onChange={handleChange}
-                                            className=" border border-gray-800 rounded-md text-white"
                                             placeholder="Input your height"
                                         />
                                     </div>
@@ -276,7 +274,6 @@ export const DataInput = ({ userId }) => {
                                             name="weight"
                                             value={formData.weight}
                                             onChange={handleChange}
-                                            className=" border border-gray-800 rounded-md text-white"
                                             placeholder="Input your weight"
                                         />
                                     </div>
@@ -324,7 +321,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Almost everyday">
                                                     Almost everyday.
                                                 </SelectItem>
@@ -366,7 +363,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Almost everyday">
                                                     Almost everyday.
                                                 </SelectItem>
@@ -407,7 +404,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="I can only drink sugary beverages">
                                                     I can only drink sugary
                                                     beverages.
@@ -450,7 +447,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="never">
                                                     Almost never.
                                                 </SelectItem>
@@ -522,7 +519,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Never. I have no regular physical activity">
                                                     Never. I have no regular
                                                     physical activity
@@ -564,7 +561,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Terrible, always sleep-deprive">
                                                     Terrible, always
                                                     sleep-deprive
@@ -681,7 +678,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Almost every day">
                                                     Almost every day
                                                 </SelectItem>
@@ -722,7 +719,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Urban (High population density, lots of buildings, traffic, and pollution)">
                                                     Urban (High population
                                                     density, lots of buildings,
@@ -762,7 +759,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Very high (Constant stress, affecting daily life)">
                                                     Very high (Constant stress,
                                                     affecting daily life)
@@ -838,7 +835,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="humble">
                                                     Light Roast
                                                 </SelectItem>
