@@ -12,12 +12,53 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { dataInputAction } from "../action";
+import { startTransition } from "react";
 
-
-export const  DataInput= ({userId}) => {
+export const DataInput = ({userId}) => {
   const [activeTab, setActiveTab] = useState("basic-info");
   const [progress, setProgress] = useState(20);
-  const [state, formAction, pending] =  useActionState(dataInputAction, null)
+  const [state, formAction, pending] = useActionState(dataInputAction, null)
+
+  const [formData, setFormData] = useState({
+    userId: userId,
+    age: "",
+    sex: "",
+    height: "",
+    weight: "",
+    fastfood: "",
+    oily: "",
+    sugar: "",
+    fruit: "",
+    workout: "",
+    sleepTime: "",
+    smoking: "",
+    alcohol: "",
+    location: "",
+    stress: "",
+    roastLevel: ""
+  });
+  
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSelectChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    startTransition(() => {
+      formAction(formData);
+    });
+  };
 
   const goToNext = () => {
     if (activeTab === "basic-info") {
@@ -57,8 +98,6 @@ export const  DataInput= ({userId}) => {
  
         <h2 className="font-bold text-xl mb-2"> Tell us about your lifestyle to get personalized recommendations</h2>
 
-        
-    
         <div className="flex mb-1">
           <div className="w-full bg-gray-800 h-1 relative p-3 rounded-xl">
             <div 
@@ -72,7 +111,6 @@ export const  DataInput= ({userId}) => {
           <span>Basic Information</span>
           <span>Preferences</span>
         </div>
-
 
         <div className="grid grid-cols-5 gap-1 mb-6">
           <button 
@@ -107,7 +145,7 @@ export const  DataInput= ({userId}) => {
           </button>
         </div>
 
-        <form action={formAction}>
+        <form onSubmit={handleSubmit}>
         <div className="border border-black rounded-md p-6">
 
           {activeTab === "basic-info" && (
@@ -116,27 +154,24 @@ export const  DataInput= ({userId}) => {
               <p className="text-gray-400 mb-6 text-sm">
                 Tell us about your physical attributes
               </p>
-              <input name="userId" defaultValue={userId} hidden />
+              <input name="userId" value={userId} onChange={handleChange} hidden />
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="age" className="text-sm">Age</Label>
-                  <Input
-                    id="age"
-                    type="text"
-                    
-                    className="bg-black border border-gray-800 rounded text-white"
+                  <Input id="age" name="age" type="text" value={formData.age} onChange={handleChange} 
+                  className="border border-gray-800 rounded-md text-white" placeholder='Input your age'
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="sex" className="text-sm">Sex</Label>
-                  <Select name='sex'>
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue placeholder="Male" />
+                  <Select value={formData.sex} onValueChange={(value) => handleSelectChange("sex", value)}>
+                    <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                      <SelectValue placeholder="Select your gender" />
                     </SelectTrigger>
-                    <SelectContent className="bg-black text-white border-gray-800">
-                      <SelectItem name='male' value="male">Male</SelectItem>
-                      <SelectItem name = 'female' value="female">Female</SelectItem>
-                      <SelectItem name = 'other' value="other">Other</SelectItem>
+                    <SelectContent className="bg-black text-white border-gray-800 rounded-md">
+                      <SelectItem value="male">Male</SelectItem>
+                      <SelectItem value="female">Female</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -145,8 +180,11 @@ export const  DataInput= ({userId}) => {
                   <Input
                     id="height"
                     type="text"
-                    name='height'
-                    className="bg-black border border-gray-800 rounded text-white"
+                    name="height"
+                    value={formData.height}
+                    onChange={handleChange}
+                    className=" border border-gray-800 rounded-md text-white"
+                    placeholder="Input your height"
                   />
                 </div>
                 <div className="space-y-2">
@@ -154,8 +192,11 @@ export const  DataInput= ({userId}) => {
                   <Input
                     id="weight"
                     type="text"
-                    name='weight'
-                    className="bg-black border border-gray-800 rounded text-white"
+                    name="weight"
+                    value={formData.weight}
+                    onChange={handleChange}
+                    className=" border border-gray-800 rounded-md text-white"
+                    placeholder="Input your weight"
                   />
                 </div>
               </div>
@@ -164,6 +205,7 @@ export const  DataInput= ({userId}) => {
                 <Button
                   className="bg-white hover:bg-gray-200 text-black rounded"
                   onClick={goToNext}
+                  type="button"
                 >
                   Next <span className="ml-1">→</span>
                 </Button>
@@ -171,7 +213,6 @@ export const  DataInput= ({userId}) => {
             </div>
           )}
 
-       
           {activeTab === "diet" && (
             <div>
               <h2 className="text-2xl font-bold mb-1">Diet</h2>
@@ -181,10 +222,10 @@ export const  DataInput= ({userId}) => {
 
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="fastfood"className="text-sm">How often do you eat fast food / junk food?</Label>
-                  <Select name='fastfood'>
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue placeholder="Sometimes" />
+                  <Label htmlFor="fastfood" className="text-sm">How often do you eat fast food / junk food?</Label>
+                  <Select value={formData.fastfood} onValueChange={(value) => handleSelectChange("fastfood", value)}>
+                    <SelectTrigger className="border border-gray-800 text-white rounded-md">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="Almost everyday">Almost everyday.</SelectItem>
@@ -199,9 +240,9 @@ export const  DataInput= ({userId}) => {
                 <div className="space-y-2">
                   <Label htmlFor="oily" className="text-sm"> How often do you eat oily or fried food, including
                   coconut milk-based dishes?</Label>
-                  <Select name='oily'>
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue  />
+                  <Select value={formData.oily} onValueChange={(value) => handleSelectChange("oily", value)}>
+                    <SelectTrigger className="border border-gray-800 text-white rounded-md">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="Almost everyday">Almost everyday.</SelectItem>
@@ -215,9 +256,9 @@ export const  DataInput= ({userId}) => {
 
                 <div className="space-y-2">
                   <Label htmlFor="sugar" className="text-sm">How often do you consume sugary foods and drinks?</Label>
-                  <Select name='sugar'>
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue />
+                  <Select value={formData.sugar} onValueChange={(value) => handleSelectChange("sugar", value)}>
+                    <SelectTrigger className="border border-gray-800 text-white rounded-md">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="I can only drink sugary beverages">I can only drink sugary beverages.</SelectItem>
@@ -232,9 +273,9 @@ export const  DataInput= ({userId}) => {
                 <div className="space-y-2">
                   <Label htmlFor="fruit" className="text-sm">
                     How often do you eat vegetables and fruits?</Label>
-                  <Select name='fruit'>
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue placeholder="Sometimes" />
+                  <Select value={formData.fruit} onValueChange={(value) => handleSelectChange("fruit", value)}>
+                    <SelectTrigger className="border border-gray-800 text-white rounded-md">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="never">Almost never.</SelectItem>
@@ -252,12 +293,14 @@ export const  DataInput= ({userId}) => {
                   variant="outline"
                   className="bg-black border border-gray-700 text-white hover:bg-gray-900"
                   onClick={goToBack}
+                  type="button"
                 >
                   Back
                 </Button>
                 <Button
                   className="bg-white hover:bg-gray-200 text-black rounded"
                   onClick={goToNext}
+                  type="button"
                 >
                   Next <span className="ml-1">→</span>
                 </Button>
@@ -265,7 +308,6 @@ export const  DataInput= ({userId}) => {
             </div>
           )}
 
-       
           {activeTab === "activity" && (
             <div>
               <h2 className="text-2xl font-bold mb-1">Daily Activity</h2>
@@ -276,25 +318,25 @@ export const  DataInput= ({userId}) => {
               <div className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="workout" className="text-sm">How often do you work out?</Label>
-                  <Select name='workout'>
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue placeholder="1-2 times a week" />
+                  <Select value={formData.workout} onValueChange={(value) => handleSelectChange("workout", value)}>
+                    <SelectTrigger className="border border-gray-800 text-white rounded-md">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="Never. I have no regular physical activity">Never. I have no regular physical activity</SelectItem>
                       <SelectItem value="Rarely. A few times a month">Rarely. A few times a month</SelectItem>
                       <SelectItem value="1-2 times a week.">1-2 times a week.</SelectItem>
                       <SelectItem value="3-5 times a week">3-5 times a week</SelectItem>
-                      <SelectItem value="Every day. I have onsistent and active lifestyle.">Every day. I have onsistent and active lifestyle.</SelectItem>
+                      <SelectItem value="Every day. I have onsistent and active lifestyle.">Every day. I have consistent and active lifestyle.</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="sleepTime" className="text-sm">How would you describe your sleep quality?</Label>
-                  <Select name="sleepTime">
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue />
+                  <Select value={formData.sleepTime} onValueChange={(value) => handleSelectChange("sleepTime", value)}>
+                    <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="Terrible, always sleep-deprive">Terrible, always sleep-deprive</SelectItem>
@@ -312,12 +354,14 @@ export const  DataInput= ({userId}) => {
                   variant="outline"
                   className="bg-black border border-gray-700 text-white hover:bg-gray-900"
                   onClick={goToBack}
+                  type="button"
                 >
                   Back
                 </Button>
                 <Button
                   className="bg-white hover:bg-gray-200 text-black rounded"
                   onClick={goToNext}
+                  type="button"
                 >
                   Next <span className="ml-1">→</span>
                 </Button>
@@ -325,7 +369,6 @@ export const  DataInput= ({userId}) => {
             </div>
           )}
 
-        
           {activeTab === "risk-factors" && (
             <div>
               <h2 className="text-2xl font-bold mb-1">Risk Factors</h2>
@@ -336,9 +379,9 @@ export const  DataInput= ({userId}) => {
               <div className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="smoking" className="text-sm">Do you smoke or vape?</Label>
-                  <Select  name="smoking">
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue placeholder="No" />
+                  <Select value={formData.smoking} onValueChange={(value) => handleSelectChange("smoking", value)}>
+                    <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="I smoke regularly (daily or almost every day)">I smoke regularly (daily or almost every day)</SelectItem>
@@ -352,9 +395,9 @@ export const  DataInput= ({userId}) => {
 
                 <div className="space-y-2">
                   <Label htmlFor="alcohol" className="text-sm">How often do you drink alcohol?</Label>
-                  <Select name="alcohol">
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue placeholder="Occasionally" />
+                  <Select value={formData.alcohol} onValueChange={(value) => handleSelectChange("alcohol", value)}>
+                    <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="Almost every day">Almost every day</SelectItem>
@@ -368,36 +411,30 @@ export const  DataInput= ({userId}) => {
 
                 <div className="space-y-2">
                   <Label htmlFor="location" className="text-sm">Where do you live?</Label>
-                  <Select name="location">
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue placeholder="Urban (high population density)" />
+                  <Select value={formData.location} onValueChange={(value) => handleSelectChange("location", value)}>
+                    <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
-                      <SelectItem value="Urban (High population density, lots of buildings,
-                            traffic, and pollution)">Urban (High population density, lots of buildings,
-                        traffic, and pollution)</SelectItem>
-                      <SelectItem value="Suburban (Residential areas near cities, mix of
-                            nature and urban life)">Suburban (Residential areas near cities, mix of
-                        nature and urban life)</SelectItem>
-                      <SelectItem value="Rural (Countryside, low population density, more
-                            natural surroundings)">Rural (Countryside, low population density, more
-                        natural surroundings)</SelectItem>
+                      <SelectItem value="Urban (High population density, lots of buildings, traffic, and pollution)">Urban (High population density, lots of buildings, traffic, and pollution)</SelectItem>
+                      <SelectItem value="Suburban (Residential areas near cities, mix of nature and urban life)">Suburban (Residential areas near cities, mix of nature and urban life)</SelectItem>
+                      <SelectItem value="Rural (Countryside, low population density, more natural surroundings)">Rural (Countryside, low population density, more natural surroundings)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="stress" className="text-sm">How would you rate your current stress level?</Label>
-                  <Select name="stress">
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue />
+                  <Select value={formData.stress} onValueChange={(value) => handleSelectChange("stress", value)}>
+                    <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="Very high (Constant stress, affecting daily life)">Very high (Constant stress, affecting daily life)</SelectItem>
                       <SelectItem value="High (Often feel overwhelmed and anxious)">High (Often feel overwhelmed and anxious)</SelectItem>
                       <SelectItem value="Moderate (Feel stressed regularly but can cope)">Moderate (Feel stressed regularly but can cope)</SelectItem>
                       <SelectItem value="Low (Occasional stress but manageable)">Low (Occasional stress but manageable)</SelectItem>
-                      <SelectItem value="Very low (Calm, rarely feel stressed)">Very low (Calm, rarely feel stressed</SelectItem>
+                      <SelectItem value="Very low (Calm, rarely feel stressed)">Very low (Calm, rarely feel stressed)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -408,12 +445,14 @@ export const  DataInput= ({userId}) => {
                   variant="outline"
                   className="bg-black border border-gray-700 text-white hover:bg-gray-900"
                   onClick={goToBack}
+                  type="button"
                 >
                   Back
                 </Button>
                 <Button
                   className="bg-white hover:bg-gray-200 text-black rounded"
                   onClick={goToNext}
+                  type="button"
                 >
                   Next <span className="ml-1">→</span>
                 </Button>
@@ -431,13 +470,13 @@ export const  DataInput= ({userId}) => {
               <div className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="roastLevel" className="text-sm">Select roast level</Label>
-                  <Select name="roastLevel" >
-                    <SelectTrigger className="bg-black border border-gray-800 text-white">
-                      <SelectValue  />
+                  <Select value={formData.roastLevel} onValueChange={(value) => handleSelectChange("roastLevel", value)}>
+                    <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                      <SelectValue placeholder="Select option" />
                     </SelectTrigger>
                     <SelectContent className="bg-black text-white border-gray-800">
                       <SelectItem value="humble">Light Roast</SelectItem>
-                      <SelectItem value="med">Medium Roast</SelectItem>
+                      <SelectItem value="mid">Medium Roast</SelectItem>
                       <SelectItem value="high">Espresso Roast</SelectItem>
                     </SelectContent>
                   </Select>
@@ -449,11 +488,13 @@ export const  DataInput= ({userId}) => {
                   variant="outline"
                   className="bg-black border border-gray-700 text-white hover:bg-gray-900"
                   onClick={goToBack}
+                  type="button"
                 >
                   Back
                 </Button>
-                <Button  disabled={pending}
+                <Button disabled={pending}
                   className="bg-white hover:bg-gray-200 text-black rounded"
+                  type="submit"
                 >
                   Submit
                 </Button>

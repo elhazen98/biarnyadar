@@ -5,7 +5,6 @@ import { openai } from "@/utils/openai";
 
 export async function getResponsePrompt(prompt, RoastLevel) {
   const systemPrompt = getRoastPrompt(RoastLevel);
-  console.log(systemPrompt);
   const promptString = JSON.stringify(prompt);
   const response = await openai.chat.completions.create({
     model: "gpt-4o-mini",

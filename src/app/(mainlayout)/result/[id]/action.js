@@ -47,12 +47,12 @@ export async function aiAction(id) {
     };
 
     const roastLevel = inputPrompt.roastLevel;
-    console.log(roastLevel);
+    // console.log(roastLevel);
     const response = await getResponsePrompt(prompt, roastLevel);
-    console.log(response);
+    // console.log(response);
     const responseParse = JSON.parse(response);
 
-    console.log(responseParse);
+    // console.log(responseParse);
 
     const mappedResponse = {
       lifeExpectancy: responseParse.lifeExpectancy,
@@ -136,7 +136,7 @@ export async function submitFeedback(resultId, rating, comment, likeScore) {
 }
 
 export async function clearResult(resultId) {
-  console.log(resultId);
+  // console.log(resultId);
   try {
     const findResult = await prisma.result.findUnique({
       where: { inputId: resultId },
