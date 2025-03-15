@@ -120,7 +120,8 @@ export const DataInput = ({userId}) => {
             Basic Info
           </button>
           <button 
-            className={`py-2 px-4 rounded ${activeTab === "diet" ?  "bg-white text-black": "bg-gray-800 text-gray-400"}`}
+            className={`py-2 px-4  rounded 
+                ${activeTab === "diet" ?  "bg-white text-black": "bg-gray-800 text-gray-400"}`}
             onClick={() => {setActiveTab("diet"); setProgress(40);}}
           >
             Diet
