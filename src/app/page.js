@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { ExampleCarousel } from "./_components/example";
 import Image from "next/image";
 
@@ -10,7 +9,12 @@ export default function Home() {
             <div className="fixed flex w-full shadow-lg z-50 backdrop-blur-lg py-8 justify-center">
                 <header className="w-7xl flex justify-between px-4 items-center">
                     <div className="text-2xl flex space-x-2">
-                        <Image src="/biarnyadar.svg" width={20} height={20} />
+                        <Image
+                            src="/biarnyadar.svg"
+                            width={20}
+                            height={20}
+                            alt="biarnyadar logo"
+                        />
                         biar<span className="font-bold">nyadar</span>
                     </div>
                     <div className="">
