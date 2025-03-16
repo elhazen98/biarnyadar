@@ -115,9 +115,9 @@ export const DataInput = ({ userId }) => {
                     <span>Finish</span>
                 </div>
 
-                <div className="grid grid-cols-5 gap-1 mb-6">
+                <div className="grid grid-cols-5 gap-1 mb-6 font-bold">
                     <button
-                        className={`py-2 px-4 rounded ${
+                        className={`py-2 px-4 rounded font-bold ${
                             activeTab === "basic-info"
                                 ? "bg-violet-200 text-black"
                                 : "bg-indigo-950 text-gray-400 hover:bg-violet-200 hover:text-black duration-150"

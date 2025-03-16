@@ -47,8 +47,11 @@ export default function LoginPage() {
                     >
                         Login
                     </button>
-                    <OauthButton />
                 </form>
+                <p className="text-center text-slate-500 py-4">
+                    ━━━━━━━━━ or ━━━━━━━━━
+                </p>
+                <OauthButton />
                 {state?.status === "error" && (
                     <div className="text-center text-rose-600 mt-3 font-bold">
                         {state.message}
