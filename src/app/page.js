@@ -285,7 +285,7 @@ export default function Home() {
                     </section>
                 </section>
                 <footer className="py-8 mt-16 border-t border-white/20">
-                    <div className="text-center text-white">
+                    <div className="text-center text-slate-200">
                         &copy; {new Date().getFullYear()} biarnyadar | All
                         rights reserved.
                     </div>

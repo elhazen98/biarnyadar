@@ -50,7 +50,7 @@ export async function loginAction(_, formData) {
 
         cookiesStore.set("sessionId", newSession.id, {
             httpOnly: true,
-            sameSite: "strict",
+            sameSite: "lax",
             secure: process.env.NODE_ENV === "production",
             expires: newSession.expires,
         });
