@@ -4,12 +4,11 @@ import { useActionState } from "react";
 import { logoutAction } from "./logout";
 
 export const LogoutButton = ({ sessionId }) => {
-  const [state, formAction, pending] = useActionState(logoutAction, null);
+    const [state, formAction, pending] = useActionState(logoutAction, null);
 
-  return (
-    <form action={formAction}>
-      {/* <input name="sessionId" defaultValue={sessionId} hidden/> */}
-      <button>Logout</button>
-    </form>
-  );
+    return (
+        <form action={formAction}>
+            <button>Logout</button>
+        </form>
+    );
 };

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogoutButton } from "./logout/logoutbutton";
 import Image from "next/image";
+import { BiChevronDown } from "react-icons/bi";
 
 export const Header = ({ name, email }) => {
     return (
@@ -22,16 +23,28 @@ export const Header = ({ name, email }) => {
                 />
                 biar<span className="font-bold">nyadar</span>
             </div>
-            <DropdownMenu>
+            <DropdownMenu className>
                 <DropdownMenuTrigger>
                     <div className="flex space-x-2 items-center">
-                        <div className="text-right">
+                        <div className="text-right font-bold flex items-center">
                             <div>{name}</div>
-                            <div>{email}</div>
+                            <button>
+                                <BiChevronDown size={24} />
+                            </button>
+                        </div>
+                    </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="mr-4">
+                    <DropdownMenuLabel className="flex justify-between items-center">
+                        <div className="flex space-x-2 items-center mr-4">
+                            <div className="">
+                                <div className="font-bold">{name}</div>
+                                <div>{email}</div>
+                            </div>
                         </div>
                         <Avatar
                             name={name}
-                            size={40}
+                            size={24}
                             colors={[
                                 "#fb6900",
                                 "#f63700",
@@ -40,12 +53,9 @@ export const Header = ({ name, email }) => {
                                 "#00b9bd",
                             ]}
                         />
-                    </div>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="flex bg-violet-500 justify-center text-slate-200 font-bold hover:bg-indigo-800 duration-150">
                         <LogoutButton />
                     </DropdownMenuItem>
                 </DropdownMenuContent>
