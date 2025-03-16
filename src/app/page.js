@@ -12,7 +12,7 @@ import { BiRightArrowAlt } from "react-icons/bi";
 
 export default function Home() {
     return (
-        <div className="bg-slate-950 text-slate-200">
+        <div className="bg-gradient-to-b from-slate-950 to-violet-950 text-slate-200">
             <div className="fixed flex w-full shadow-lg z-50 backdrop-blur-md py-8 justify-center">
                 <header className="w-7xl flex justify-between px-4 items-center">
                     <div className="text-2xl flex space-x-2">

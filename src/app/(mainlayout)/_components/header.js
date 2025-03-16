@@ -10,11 +10,12 @@ import {
 import { LogoutButton } from "./logout/logoutbutton";
 import Image from "next/image";
 import { BiChevronDown } from "react-icons/bi";
+import Link from "next/link";
 
 export const Header = ({ name, email }) => {
     return (
         <header className="w-full p-4 flex justify-between">
-            <div className="text-2xl flex space-x-2 items-center">
+            <Link href="/" className="text-2xl flex space-x-2 items-center">
                 <Image
                     src="/biarnyadar.svg"
                     width={20}
@@ -22,15 +23,13 @@ export const Header = ({ name, email }) => {
                     alt="biarnyadar logo"
                 />
                 biar<span className="font-bold">nyadar</span>
-            </div>
+            </Link>
             <DropdownMenu className>
                 <DropdownMenuTrigger>
                     <div className="flex space-x-2 items-center">
-                        <div className="text-right font-bold flex items-center">
+                        <div className="text-right font-bold flex items-center text-xl">
                             <div>{name}</div>
-                            <button>
-                                <BiChevronDown size={24} />
-                            </button>
+                            <BiChevronDown size={24} />
                         </div>
                     </div>
                 </DropdownMenuTrigger>
