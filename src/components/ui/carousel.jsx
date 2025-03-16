@@ -192,7 +192,7 @@ function CarouselNext({
             variant={variant}
             size={size}
             className={cn(
-                "absolute size-8 rounded-full bg-purple-900 border-none",
+                "absolute size-8 rounded-full bg-violet-900 border-none",
                 orientation === "horizontal"
                     ? "top-1/2 -right-12 -translate-y-1/2"
                     : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",

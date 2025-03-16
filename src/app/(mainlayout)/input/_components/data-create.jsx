@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/select";
 import { dataInputAction } from "../action";
 import { startTransition } from "react";
+import { BiLeftArrowAlt } from "react-icons/bi";
+import { BiRightArrowAlt } from "react-icons/bi";
 
 export const DataInput = ({ userId }) => {
     const [activeTab, setActiveTab] = useState("basic-info");
@@ -92,34 +94,33 @@ export const DataInput = ({ userId }) => {
     };
 
     return (
-        <div className="h-full text-white px-4 py-8">
-            <div className="max-w-3xl mx-auto">
-                <h2 className="font-bold text-xl mb-2">
+        <div className="h-full text-slate-200">
+            <div className="w-full">
+                <h2 className="font-bold text-2xl mb-6">
                     {" "}
-                    Tell us about your lifestyle to get personalized
-                    recommendations
+                    Tell us about your lifestyle
                 </h2>
 
                 <div className="flex mb-1">
-                    <div className="w-full bg-gray-800 h-1 relative p-3 rounded-xl">
+                    <div className="w-full bg-indigo-950 h-1 relative p-2 rounded-xl">
                         <div
-                            className="absolute top-0 left-0 h-full bg-white p-3 rounded-xl"
+                            className="absolute top-0 left-0 h-full bg-violet-200 p-2 rounded-xl duration-300"
                             style={{ width: `${progress}%` }}
                         ></div>
                     </div>
                 </div>
 
-                <div className="flex justify-between text-xs mb-6">
-                    <span>Basic Information</span>
-                    <span>Preferences</span>
+                <div className="flex justify-between text-xs mb-6 mt-2">
+                    <span>Start</span>
+                    <span>Finish</span>
                 </div>
 
                 <div className="grid grid-cols-5 gap-1 mb-6">
                     <button
                         className={`py-2 px-4 rounded ${
                             activeTab === "basic-info"
-                                ? "bg-white text-black"
-                                : "bg-gray-800 text-gray-400"
+                                ? "bg-violet-200 text-black"
+                                : "bg-indigo-950 text-gray-400 hover:bg-violet-200 hover:text-black duration-150"
                         }`}
                         onClick={() => {
                             setActiveTab("basic-info");
@@ -129,12 +130,11 @@ export const DataInput = ({ userId }) => {
                         Basic Info
                     </button>
                     <button
-                        className={`py-2 px-4  rounded 
-                ${
-                    activeTab === "diet"
-                        ? "bg-white text-black"
-                        : "bg-gray-800 text-gray-400"
-                }`}
+                        className={`py-2 px-4 rounded ${
+                            activeTab === "diet"
+                                ? "bg-violet-200 text-black"
+                                : "bg-indigo-950 text-gray-400 hover:bg-violet-200 hover:text-black duration-150"
+                        }`}
                         onClick={() => {
                             setActiveTab("diet");
                             setProgress(40);
@@ -145,8 +145,8 @@ export const DataInput = ({ userId }) => {
                     <button
                         className={`py-2 px-4 rounded ${
                             activeTab === "activity"
-                                ? "bg-white text-black"
-                                : "bg-gray-800 text-gray-400"
+                                ? "bg-violet-200 text-black"
+                                : "bg-indigo-950 text-gray-400 hover:bg-violet-200 hover:text-black duration-150"
                         }`}
                         onClick={() => {
                             setActiveTab("activity");
@@ -157,9 +157,9 @@ export const DataInput = ({ userId }) => {
                     </button>
                     <button
                         className={`py-2 px-4 rounded ${
-                            activeTab === "risk-factors"
-                                ? "bg-white text-black"
-                                : "bg-gray-800 text-gray-400"
+                            activeTab === "risk-factor"
+                                ? "bg-violet-200 text-black"
+                                : "bg-indigo-950 text-gray-400 hover:bg-violet-200 hover:text-black duration-150"
                         }`}
                         onClick={() => {
                             setActiveTab("risk-factors");
@@ -171,8 +171,8 @@ export const DataInput = ({ userId }) => {
                     <button
                         className={`py-2 px-4 rounded ${
                             activeTab === "preferences"
-                                ? "bg-white text-black"
-                                : "bg-gray-800 text-gray-400"
+                                ? "bg-violet-200 text-black"
+                                : "bg-indigo-950 text-gray-400 hover:bg-violet-200 hover:text-black duration-150"
                         }`}
                         onClick={() => {
                             setActiveTab("preferences");
@@ -184,7 +184,7 @@ export const DataInput = ({ userId }) => {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                    <div className="border border-black rounded-md p-6">
+                    <div className="rounded-lg p-6 bg-gradient-to-r to-indigo-950 from-violet-950">
                         {activeTab === "basic-info" && (
                             <div>
                                 <h2 className="text-2xl font-bold mb-1">
@@ -213,7 +213,6 @@ export const DataInput = ({ userId }) => {
                                             type="text"
                                             value={formData.age}
                                             onChange={handleChange}
-                                            className="border border-gray-800 rounded-md text-white"
                                             placeholder="Input your age"
                                         />
                                     </div>
@@ -230,10 +229,10 @@ export const DataInput = ({ userId }) => {
                                                 handleSelectChange("sex", value)
                                             }
                                         >
-                                            <SelectTrigger className="rounded-md border border-gray-800 text-white">
+                                            <SelectTrigger className="rounded-md text-slate-200">
                                                 <SelectValue placeholder="Select your gender" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800 rounded-md">
+                                            <SelectContent>
                                                 <SelectItem value="male">
                                                     Male
                                                 </SelectItem>
@@ -259,7 +258,6 @@ export const DataInput = ({ userId }) => {
                                             name="height"
                                             value={formData.height}
                                             onChange={handleChange}
-                                            className=" border border-gray-800 rounded-md text-white"
                                             placeholder="Input your height"
                                         />
                                     </div>
@@ -276,7 +274,6 @@ export const DataInput = ({ userId }) => {
                                             name="weight"
                                             value={formData.weight}
                                             onChange={handleChange}
-                                            className=" border border-gray-800 rounded-md text-white"
                                             placeholder="Input your weight"
                                         />
                                     </div>
@@ -284,11 +281,14 @@ export const DataInput = ({ userId }) => {
 
                                 <div className="flex justify-end mt-6">
                                     <Button
-                                        className="bg-white hover:bg-gray-200 text-black rounded"
+                                        className="bg-slate-200 hover:bg-indigo-800 text-black rounded hover:text-slate-200"
                                         onClick={goToNext}
                                         type="button"
                                     >
-                                        Next <span className="ml-1">→</span>
+                                        Next{" "}
+                                        <span className="ml-1">
+                                            <BiRightArrowAlt />
+                                        </span>
                                     </Button>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@ export const DataInput = ({ userId }) => {
                                     Tell us about your eating habits
                                 </p>
 
-                                <div className="space-y-6">
+                                <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <Label
                                             htmlFor="fastfood"
@@ -324,7 +324,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Almost everyday">
                                                     Almost everyday.
                                                 </SelectItem>
@@ -366,7 +366,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Almost everyday">
                                                     Almost everyday.
                                                 </SelectItem>
@@ -407,7 +407,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="I can only drink sugary beverages">
                                                     I can only drink sugary
                                                     beverages.
@@ -450,7 +450,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="never">
                                                     Almost never.
                                                 </SelectItem>
@@ -474,19 +474,24 @@ export const DataInput = ({ userId }) => {
 
                                 <div className="flex justify-between mt-6">
                                     <Button
-                                        variant="outline"
-                                        className="bg-black border border-gray-700 text-white hover:bg-gray-900"
+                                        className="bg-slate-950 text-white hover:bg-indigo-800"
                                         onClick={goToBack}
                                         type="button"
                                     >
+                                        <span className="mr-1">
+                                            <BiLeftArrowAlt />
+                                        </span>
                                         Back
                                     </Button>
                                     <Button
-                                        className="bg-white hover:bg-gray-200 text-black rounded"
+                                        className="bg-slate-200 hover:bg-indigo-800 text-black rounded hover:text-slate-200"
                                         onClick={goToNext}
                                         type="button"
                                     >
-                                        Next <span className="ml-1">→</span>
+                                        Next{" "}
+                                        <span className="ml-1">
+                                            <BiRightArrowAlt />
+                                        </span>
                                     </Button>
                                 </div>
                             </div>
@@ -502,7 +507,7 @@ export const DataInput = ({ userId }) => {
                                     sleep
                                 </p>
 
-                                <div className="space-y-6">
+                                <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <Label
                                             htmlFor="workout"
@@ -522,7 +527,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="border border-gray-800 text-white rounded-md">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Never. I have no regular physical activity">
                                                     Never. I have no regular
                                                     physical activity
@@ -564,7 +569,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Terrible, always sleep-deprive">
                                                     Terrible, always
                                                     sleep-deprive
@@ -590,19 +595,24 @@ export const DataInput = ({ userId }) => {
 
                                 <div className="flex justify-between mt-6">
                                     <Button
-                                        variant="outline"
-                                        className="bg-black border border-gray-700 text-white hover:bg-gray-900"
+                                        className="bg-slate-950 text-white hover:bg-indigo-800"
                                         onClick={goToBack}
                                         type="button"
                                     >
+                                        <span className="mr-1">
+                                            <BiLeftArrowAlt />
+                                        </span>
                                         Back
                                     </Button>
                                     <Button
-                                        className="bg-white hover:bg-gray-200 text-black rounded"
+                                        className="bg-slate-200 hover:bg-indigo-800 text-black rounded hover:text-slate-200"
                                         onClick={goToNext}
                                         type="button"
                                     >
-                                        Next <span className="ml-1">→</span>
+                                        Next{" "}
+                                        <span className="ml-1">
+                                            <BiRightArrowAlt />
+                                        </span>
                                     </Button>
                                 </div>
                             </div>
@@ -617,7 +627,7 @@ export const DataInput = ({ userId }) => {
                                     Tell us about potential health risk factors
                                 </p>
 
-                                <div className="space-y-6">
+                                <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <Label
                                             htmlFor="smoking"
@@ -681,7 +691,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Almost every day">
                                                     Almost every day
                                                 </SelectItem>
@@ -722,7 +732,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Urban (High population density, lots of buildings, traffic, and pollution)">
                                                     Urban (High population
                                                     density, lots of buildings,
@@ -762,7 +772,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="Very high (Constant stress, affecting daily life)">
                                                     Very high (Constant stress,
                                                     affecting daily life)
@@ -790,19 +800,24 @@ export const DataInput = ({ userId }) => {
 
                                 <div className="flex justify-between mt-6">
                                     <Button
-                                        variant="outline"
-                                        className="bg-black border border-gray-700 text-white hover:bg-gray-900"
+                                        className="bg-slate-950 text-white hover:bg-indigo-800"
                                         onClick={goToBack}
                                         type="button"
                                     >
+                                        <span className="mr-1">
+                                            <BiLeftArrowAlt />
+                                        </span>
                                         Back
                                     </Button>
                                     <Button
-                                        className="bg-white hover:bg-gray-200 text-black rounded"
+                                        className="bg-slate-200 hover:bg-indigo-800 text-black rounded hover:text-slate-200"
                                         onClick={goToNext}
                                         type="button"
                                     >
-                                        Next <span className="ml-1">→</span>
+                                        Next{" "}
+                                        <span className="ml-1">
+                                            <BiRightArrowAlt />
+                                        </span>
                                     </Button>
                                 </div>
                             </div>
@@ -838,7 +853,7 @@ export const DataInput = ({ userId }) => {
                                             <SelectTrigger className="rounded-md border border-gray-800 text-white">
                                                 <SelectValue placeholder="Select option" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-black text-white border-gray-800">
+                                            <SelectContent>
                                                 <SelectItem value="humble">
                                                     Light Roast
                                                 </SelectItem>
@@ -855,16 +870,18 @@ export const DataInput = ({ userId }) => {
 
                                 <div className="flex justify-between mt-6">
                                     <Button
-                                        variant="outline"
-                                        className="bg-black border border-gray-700 text-white hover:bg-gray-900"
+                                        className="bg-slate-950 text-white hover:bg-indigo-800"
                                         onClick={goToBack}
                                         type="button"
                                     >
+                                        <span className="mr-1">
+                                            <BiLeftArrowAlt />
+                                        </span>
                                         Back
                                     </Button>
                                     <Button
                                         disabled={pending}
-                                        className="bg-white hover:bg-gray-200 text-black rounded"
+                                        className="bg-slate-200 hover:bg-indigo-800 text-black rounded hover:text-slate-200"
                                         type="submit"
                                     >
                                         Submit

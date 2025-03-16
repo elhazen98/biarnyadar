@@ -146,94 +146,106 @@ export default function Page() {
 
     return (
         <div className="flex flex-col w-full h-full text-white">
-            <div className="p-4">
-                <h2 className="text-xl font-bold mb-4">
-                    {result.title || "Here's the Result"}
-                </h2>
+            <div className="flex flex-col justify-between pr-4 h-full">
+                <div className="">
+                    <h2 className="text-2xl font-bold mb-4">
+                        {result.title || "Here's the Result"}
+                    </h2>
 
-                <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-md p-6 mb-4 border-l-4 border-blue-500 shadow-lg">
-                    <h3 className="text-xl font-bold mb-3 text-blue-300">
-                        Health Assessment
-                    </h3>
-                    <div className="text-white leading-relaxed">
-                        {result.roastComment
-                            .split(". ")
-                            .map((sentence, index) =>
-                                sentence.trim() ? (
-                                    <p key={index} className="mb-2">
-                                        {sentence.trim() +
-                                            (sentence.endsWith(".") ? "" : ".")}
-                                    </p>
-                                ) : null
-                            )}
-                    </div>
-                </div>
+                    <div>
+                        <div className="bg-gradient-to-r to-indigo-950 from-violet-950 rounded-md p-6 mb-4 border-l-4 border-indigo-500 shadow-lg">
+                            <h3 className="text-xl font-bold mb-3 text-indigo-300">
+                                Health Assessment
+                            </h3>
+                            <div className="text-white leading-relaxed">
+                                {result.roastComment
+                                    .split(". ")
+                                    .map((sentence, index) =>
+                                        sentence.trim() ? (
+                                            <p key={index} className="mb-2">
+                                                {sentence.trim() +
+                                                    (sentence.endsWith(".")
+                                                        ? ""
+                                                        : ".")}
+                                            </p>
+                                        ) : null
+                                    )}
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <div className="md:col-span-2 bg-gradient-to-r to-indigo-950 from-violet-950 rounded-md p-5 shadow-md border-l-4 border-violet-500">
+                                <h3 className="text-lg font-bold mb-3 text-purple-300">
+                                    Disease Risk:
+                                </h3>
+                                <div className="text-white">
+                                    {parsedDiseaseRisks &&
+                                    parsedDiseaseRisks.length > 0 ? (
+                                        <ul className="ml-4 space-y-2">
+                                            {parsedDiseaseRisks?.map(
+                                                (risk, index) => (
+                                                    <li
+                                                        key={index}
+                                                        className="flex items-start"
+                                                    >
+                                                        <span className="inline-block mr-2 text-violet-400">
+                                                            •
+                                                        </span>
+                                                        <span className="text-gray-100">
+                                                            Type: {risk.type} ,
+                                                            Percentage :{" "}
+                                                            {risk.percentage}%
+                                                        </span>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    ) : (
+                                        <p className="ml-4 text-gray-400">
+                                            No specific disease risks identified
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                    <div className="md:col-span-2 bg-gray-800 rounded-md p-5 shadow-md border-l-4 border-purple-500">
-                        <h3 className="text-lg font-bold mb-3 text-purple-300">
-                            Disease Risk:
-                        </h3>
-                        <div className="text-white">
-                            {parsedDiseaseRisks &&
-                            parsedDiseaseRisks.length > 0 ? (
-                                <ul className="ml-4 space-y-2">
-                                    {parsedDiseaseRisks?.map((risk, index) => (
-                                        <li
-                                            key={index}
-                                            className="flex items-start"
-                                        >
-                                            <span className="inline-block mr-2 text-purple-400">
-                                                •
-                                            </span>
-                                            <span className="text-gray-100">
-                                                Type: {risk.type} , Percentage :{" "}
-                                                {risk.percentage}%
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <p className="ml-4 text-gray-400">
-                                    No specific disease risks identified
-                                </p>
-                            )}
+                            <div className="bg-indigo-950 rounded-md p-5 flex flex-col items-center justify-center shadow-md border-t-4 border-emerald-500">
+                                <h3 className="text-lg font-bold mb-3 text-emerald-300">
+                                    Life expectancy
+                                </h3>
+                                <div className="text-7xl font-bold text-white">
+                                    {result.lifeExpectancy}
+                                </div>
+                                <div className="text-green-300 text-sm mt-2">
+                                    years
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-gradient-to-r to-indigo-950 from-violet-950 rounded-md p-6 mb-6 shadow-lg border-l-4 border-amber-500">
+                            <h3 className="text-xl font-bold mb-3 text-amber-300">
+                                Recommendation
+                            </h3>
+                            <div className="text-white leading-relaxed">
+                                {result.recommendation
+                                    .split(". ")
+                                    .map((sentence, index) =>
+                                        sentence.trim() ? (
+                                            <p key={index} className="mb-2">
+                                                <span className="text-yellow-400">
+                                                    ✓
+                                                </span>{" "}
+                                                {sentence.trim() +
+                                                    (sentence.endsWith(".")
+                                                        ? ""
+                                                        : ".")}
+                                            </p>
+                                        ) : null
+                                    )}
+                            </div>
                         </div>
                     </div>
-
-                    <div className="bg-gray-800 rounded-md p-5 flex flex-col items-center justify-center shadow-md border-t-4 border-green-500">
-                        <h3 className="text-lg font-bold mb-3 text-green-300">
-                            Life expectancy
-                        </h3>
-                        <div className="text-5xl font-bold text-white">
-                            {result.lifeExpectancy}
-                        </div>
-                        <div className="text-green-300 text-sm mt-2">years</div>
-                    </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-md p-6 mb-6 shadow-lg border-l-4 border-yellow-500">
-                    <h3 className="text-xl font-bold mb-3 text-yellow-300">
-                        Recommendation
-                    </h3>
-                    <div className="text-white leading-relaxed">
-                        {result.recommendation
-                            .split(". ")
-                            .map((sentence, index) =>
-                                sentence.trim() ? (
-                                    <p key={index} className="mb-2">
-                                        <span className="text-yellow-400">
-                                            ✓
-                                        </span>{" "}
-                                        {sentence.trim() +
-                                            (sentence.endsWith(".") ? "" : ".")}
-                                    </p>
-                                ) : null
-                            )}
-                    </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 rounded-md p-5 shadow-md border-t-2 border-gray-600">
+                <div className="flex flex-col sm:flex-row justify-between items-center bg-indigo-950 rounded-md p-5 shadow-md">
                     <div className="flex items-center mb-4 sm:mb-0">
                         <div className="flex items-center">
                             {renderStars(starRating)}
@@ -242,13 +254,13 @@ export default function Page() {
                     <div className="flex space-x-3">
                         <button
                             onClick={() => setIsModalOpen(true)}
-                            className="px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
+                            className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
                         >
                             {hasRated ? "Update rating" : "Rate result"}
                         </button>
                         <button
                             onClick={handleClearResult}
-                            className="px-5 py-2 bg-red-600 hover:bg-red-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
+                            className="px-5 py-2 bg-rose-600 hover:bg-rose-500 rounded-md font-medium transition duration-200 ease-in-out transform hover:scale-105"
                         >
                             Clear result
                         </button>

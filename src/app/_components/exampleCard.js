@@ -8,7 +8,7 @@ export const ExampleCard = ({
     firstDiseaseRisk,
 }) => {
     return (
-        <Card className="bg-gradient-to-r from-indigo-900 to-purple-900 border-none">
+        <Card className="bg-gradient-to-r from-indigo-900 to-violet-900 border-none">
             <CardContent>
                 <div className="flex justify-center items-center flex-col space-y-6">
                     <h2 className="text-white font-bold text-2xl">{title}</h2>

@@ -7,7 +7,7 @@ export const Sidebar = async ({ userId }) => {
     });
     return (
         <div className="max-w-md w-1/6 pl-4 pr-4">
-            <div className="h-full border border-slate-700/50 rounded-xl from-gray-800/20 to-gray-700/20 backdrop-blur-md shadow-lg bg-gradient-to-b">
+            <div className="h-full rounded-xl bg-gradient-to-b to-indigo-950 from-violet-950">
                 <div className="p-4 h-full space-y-4">
                     <div className="h-full flex flex-col justify-between">
                         <div>
@@ -20,7 +20,7 @@ export const Sidebar = async ({ userId }) => {
                                         href={`/result/${result.inputId}`}
                                         key={result.inputId}
                                     >
-                                        <div className="w-full text-sm rounded-lg transition duration-150 text-slate-300 hover:bg-purple-300 hover:text-slate-900 hover:shadow-lg p-2 bg-slate-700/50 font-bold">
+                                        <div className="w-full text-sm rounded-lg transition duration-150 hover:bg-violet-800 hover:text-slate-200 p-2 bg-violet-500 font-bold">
                                             {result.title}
                                         </div>
                                     </Link>
@@ -29,7 +29,7 @@ export const Sidebar = async ({ userId }) => {
                         </div>
                         <Link
                             href={"/input"}
-                            className="text-center rounded-full text-md py-2 px-4 bg-gradient-to-r from-indigo-800 to-purple-800 hover:brightness-150 duration-150"
+                            className="w-full bg-gradient-to-r from-indigo-800 to-violet-900 hover:brightness-150 font-bold py-3 rounded-full duration-150 shadow-xl text-center"
                         >
                             Add New Input
                         </Link>
